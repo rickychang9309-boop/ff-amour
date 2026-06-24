@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>精選系列全覽 | HONEYMOON STAGE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .font-serif-brand {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.15em;
+        }
+        /* 磨砂玻璃特效 */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px rgba(255, 255, 255, 0.3) solid;
+            transition: background 0.5s, border 0.5s;
+        }
+        .dark .glass-panel {
+            background: rgba(13, 15, 20, 0.55);
+            border-bottom: 1px rgba(255, 255, 255, 0.05) solid;
+        }
+        /* 精緻滾動條 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(247, 242, 235, 0.6); }
+        .dark ::-webkit-scrollbar-track { background: rgba(13, 15, 20, 0.8); }
+        ::-webkit-scrollbar-thumb { background: #C3B1A0; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A89584; }
+        
+        /* 星空背景閃爍動畫 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .aurora {
+            filter: blur(80px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+        .btn-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-hover-effect:hover::after { height: 300%; }
+    </style>
+</head>
+<body class="bg-[#FAF7F2] text-[#4A423C] dark:bg-[#0E1015] dark:text-[#E2E8F0] selection:bg-[#EAE1D4] selection:text-[#4A423C]">
+
+    <div id="starfield" class="hidden fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="aurora absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-indigo-500/30"></div>
+        <div class="aurora absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-500/20"></div>
+    </div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 md:px-12 flex justify-between items-center glass-panel shadow-sm">
+    <a href="index.html" class="flex flex-col leading-tight text-[#5A5048] dark:text-white transition-colors duration-300">
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">HONEYMOON</span>
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">STAGE</span>
+</a>
+<div class="hidden md:flex space-x-10 items-center text-xs tracking-[0.25em] font-light ml-auto mr-8">
+            <a href="shop.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">SHOP</a>
+            <a href="customization.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">CUSTOMIZATION</a>
+        </div>
+        <div class="flex items-center space-x-4 md:space-x-6 ml-4">
+            <button onclick="toggleCart()" class="relative p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+                <i class="fa-solid fa-bag-shopping text-lg md:text-xl"></i>
+                <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-amber-800 dark:bg-amber-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold scale-90 hidden">0</span>
+            </button>
+        <button onclick="window.location.href='member.html'" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+                <i class="fa-regular fa-user text-lg md:text-xl"></i>
+            </button>
+            </div>
+    </nav>
+
+    <header class="relative pt-32 pb-8 px-6 text-center z-10">
+        <span class="text-xs tracking-[0.3em] text-[#C3B1A0] dark:text-amber-500 uppercase font-medium">The Entire Collection</span>
+        <h1 class="text-4xl md:text-5xl font-serif-brand mt-3 text-[#5A5048] dark:text-white mb-4">探索精選系列</h1>
+        <div class="w-16 h-[1px] bg-[#C3B1A0] mx-auto mb-6"></div>
+    </header>
+
+    <main class="relative px-6 md:px-16 pb-24 z-10 max-w-7xl mx-auto w-full">
+        
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-stone-200 dark:border-stone-800/80 pb-6 mb-10 space-y-4 md:space-y-0">
+            
+            <div class="flex flex-wrap gap-2 text-xs tracking-widest font-light">
+                <button onclick="filterCategory('all')" id="tab-all" class="category-tab px-5 py-2.5 rounded-full bg-[#5A5048] text-white dark:bg-amber-600 transition-all font-medium">ALL / 全部商品</button>
+                <button onclick="filterCategory('necklace')" id="tab-necklace" class="category-tab px-5 py-2.5 rounded-full bg-white dark:bg-[#1C1F26] text-stone-500 hover:text-[#5A5048] dark:hover:text-white transition-all border border-stone-200/60 dark:border-stone-800">NECKLACES / 項鍊</button>
+                <button onclick="filterCategory('ring')" id="tab-ring" class="category-tab px-5 py-2.5 rounded-full bg-white dark:bg-[#1C1F26] text-stone-500 hover:text-[#5A5048] dark:hover:text-white transition-all border border-stone-200/60 dark:border-stone-800">RINGS / 戒指</button>
+                <button onclick="filterCategory('bracelet')" id="tab-bracelet" class="category-tab px-5 py-2.5 rounded-full bg-white dark:bg-[#1C1F26] text-stone-500 hover:text-[#5A5048] dark:hover:text-white transition-all border border-stone-200/60 dark:border-stone-800">BRACELETS / 手鍊</button>
+                <button onclick="filterCategory('accessories')" id="tab-accessories" class="category-tab px-5 py-2.5 rounded-full bg-white dark:bg-[#1C1F26] text-stone-500 hover:text-[#5A5048] dark:hover:text-white transition-all border border-stone-200/60 dark:border-stone-800">ACCESSORIES / 配件</button>
+            </div>
+
+            <div class="flex items-center space-x-3 self-end md:self-auto">
+                <label for="sort-select" class="text-xs tracking-wider text-stone-400 font-light">排序方式：</label>
+                <select id="sort-select" onchange="sortProducts(this.value)" class="text-xs p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1C1F26] focus:outline-none focus:border-[#C3B1A0] text-stone-600 dark:text-stone-300">
+                    <option value="default">預設推薦</option>
+                    <option value="price-asc">價格：由低到高</option>
+                    <option value="price-desc">價格：由高到低</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            </div>
+    </main>
+
+    <footer class="py-12 border-t border-stone-300 dark:border-stone-800 text-center text-xs text-stone-400 relative z-10 bg-[#FAF7F2] dark:bg-[#0E1015]">
+        <p class="font-serif-brand tracking-[0.2em] text-stone-600 dark:text-stone-300 mb-2 text-base">HONEYMOON STAGE STUDIO</p>
+        <p>© 2026 HONEYMOON STAGE. Designed with love. All rights reserved.</p>
+    </footer>
+
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-[#111319] shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-stone-100 dark:border-stone-800/80">
+        <div class="p-6 border-b border-stone-100 dark:border-stone-800 flex justify-between items-center">
+            <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-white flex items-center font-bold">
+                <i class="fa-solid fa-bag-shopping mr-3 text-lg"></i>您的購物提袋 (<span id="cart-count">0</span>)
+            </h3>
+            <button onclick="toggleCart()" class="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-full text-stone-500 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <div id="empty-cart-view" class="h-full flex flex-col items-center justify-center text-center text-stone-400 py-12">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-[#C3B1A0] mb-4"></i>
+                <p class="text-sm font-medium">您的購物袋目前是空的</p>
+                <button onclick="toggleCart()" class="mt-6 px-8 py-2.5 bg-[#5A5048] dark:bg-amber-600 text-white text-xs tracking-widest uppercase rounded-lg">開始探索商品</button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-stone-100 dark:border-stone-800 bg-stone-50 dark:bg-[#181B22] space-y-4">
+            <div id="free-shipping-container" class="space-y-1.5 hidden">
+                <div class="flex justify-between text-[11px] font-medium">
+                    <span id="free-shipping-text">還差 $32.00 享免費送貨</span>
+                    <span>免運門檻 $80.00</span>
+                </div>
+                <div class="w-full bg-stone-200 dark:bg-stone-800 h-1.5 rounded-full overflow-hidden">
+                    <div id="free-shipping-progress" class="bg-amber-800 dark:bg-amber-600 h-full w-[40%] transition-all duration-500"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs">
+                <span class="text-stone-500">預估配送運費</span>
+                <span id="shipping-cost" class="font-medium">$10.00</span>
+            </div>
+            <div class="flex justify-between items-center text-base font-semibold border-t border-dashed border-stone-200 dark:border-stone-800 pt-3">
+                <span>合計總金額</span>
+                <span id="cart-total-price" class="text-amber-800 dark:text-amber-500 font-serif-brand text-xl">$0.00</span>
+            </div>
+
+            <button onclick="checkoutMock()" class="w-full py-4 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-95 text-white text-xs tracking-[0.2em] uppercase font-bold rounded-xl transition-all shadow-md btn-hover-effect">
+                前往結帳 SECURE CHECKOUT
+            </button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity duration-300"></div>
+
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div onclick="closeProductModal()" class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
+        
+        <div class="bg-[#FAF7F2] dark:bg-[#15181F] w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative z-10 border border-[#E7DEC2]/20 flex flex-col md:flex-row">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white/80 dark:bg-[#1C1F26] flex items-center justify-center text-stone-600 hover:text-black dark:text-stone-300 dark:hover:text-white transition-all shadow-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="md:w-1/2 bg-stone-100 dark:bg-[#1E212A] p-10 flex items-center justify-center border-r border-[#E7DEC2]/10">
+                <div class="w-full max-w-[200px]" id="modal-product-svg-container"></div>
+            </div>
+
+            <div class="md:w-1/2 p-8 flex flex-col justify-between">
+                <div>
+                    <span id="modal-product-category" class="text-[9px] uppercase tracking-widest text-[#C3B1A0] font-bold">HONEYMOON SPECIAL</span>
+                    <h3 id="modal-product-title" class="font-serif-brand text-2xl mt-1 text-stone-800 dark:text-white font-semibold">產品名稱</h3>
+                    <div id="modal-product-price" class="text-xl font-serif-brand text-amber-800 dark:text-amber-500 font-medium mt-1.5">$0.00</div>
+                    
+                    <p id="modal-product-desc" class="text-xs text-stone-500 dark:text-stone-400 mt-5 leading-relaxed">加載中...</p>
+
+                    <div class="mt-6 space-y-4">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-2">首飾金屬材質選項</label>
+                            <select id="modal-metal-select" class="w-full text-xs p-3 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1C1F26] focus:outline-none focus:border-amber-800">
+                                <option>天然925純銀 (預設抗敏)</option>
+                                <option>18K香檳金電鍍 (+$5.00)</option>
+                                <option>璀璨玫瑰金電鍍 (+$5.00)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-stone-100 dark:border-stone-800">
+                    <button id="modal-add-btn" class="w-full py-3.5 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-95 text-white text-xs tracking-widest uppercase font-bold rounded-lg transition-all shadow-sm">
+                        加購放入提袋 ADD TO BAG
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-notif" class="fixed bottom-6 left-6 z-50 bg-[#5A5048] dark:bg-amber-600 text-white text-xs tracking-wider px-5 py-4 rounded-2xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-sparkles text-amber-300"></i>
+        <span id="toast-message">商品已順利加入購物車！</span>
+    </div>
+
+    <script>
+        // --- 核心資料庫 (串接首頁原有的 4 項商品) ---
+        const PRODUCT_DATABASE = {
+            pearl_earrings: {
+                id: "pearl_earrings",
+                title: "閃閃好日",
+                price: 620,
+                category: "necklace",
+                categoryText: "SIGNATURE EARRINGS",
+                tag: "經典熱銷",
+                tagClass: "bg-[#C3B1A0]/90",
+                desc: "以輕盈的夢幻藍調勾勒出晴空般的日常美好。設計上大膽採用不對稱美學，巧妙融合了通透的幾何水晶、溫潤的巴洛克珍珠，並以精緻的水藍色細珠手工編織出靈動的蝴蝶結；頸間垂墜的愛心水晶在陽光下熠熠生輝，如同每個值得慶祝的耀眼日子。無論是搭配簡約日常服或優雅洋裝，它都能成為最溫柔的點睛之筆，陪你閃亮過好日。",
+                image: "necklace.jpg"
+            },
+            stacked_ring: {
+                id: "stacked_ring",
+                title: "鈕扣花串珠戒指",
+                price: 200,
+                category: "ring",
+                categoryText: "ELEGANT RINGS",
+                tag: "人氣推薦",
+                tagClass: "bg-amber-700/80",
+                desc: "以幾顆不同大小、溫潤如瓷的彩色鈕扣（淡藍、粉紅、米白）疊加成花朵造型，中心則以精細的米珠、水晶珠和一顆小珍珠簇擁，模擬出花蕊的靈動。戒指指環部分使用了多彩的編織細珠鏈，確保佩戴的舒適與多變。它既有鈕扣的復古童趣，又兼具串珠的精緻光澤，戴在手上非常亮眼。",
+                image: "ring.jpg"
+            },
+            bow_bracelet: {
+                id: "bow_bracelet",
+                title: "Bracelet 鏈",
+                price: 320,
+                category: "bracelet",
+                categoryText: "CLASSIC BRACELET",
+                tag: "",
+                tagClass: "",
+                desc: "以清透的銀白與草綠色調，勾勒出如午後陽光灑落草地般的愜意美好。設計上大膽採用雙層不對稱美學，巧妙融合了通透的幾何切面水晶、溫潤的巴洛克珍珠，並以精緻細巧的銀色米珠串起靈動的波浪線條；腕間錯落的珍珠在綠蔭陽光下熠熠生輝，如同每個值得記錄的日常微光。無論是單獨配戴或多層次疊搭，它都能成為最溫柔的點睛之筆，陪你輕盈過好日。",
+                image: "bracelet.jpg"
+            },
+            drip_choker: {
+                id: "drip_choker",
+                title: "手腕掛繩",
+                price: 290,
+                category: "accessories",
+                categoryText: "LIMITED CHOKER",
+                tag: "限定珍藏",
+                tagClass: "bg-indigo-700/80",
+                desc: "以輕柔的粉櫻、湖藍與鵝黃色調，勾勒出如書頁翻動間的愜意美好。設計上大膽採用軟綿蓬鬆的多材質線材美學，巧妙融合了通透的空氣感紗線、溫潤的手作針織，並以精緻金屬扣環完美銜接日常實用度；腕間錯落的毛線層次在陽光下熠熠生輝，如同每個沉浸在咖啡香中的耀眼日子。無論是搭配手機、鑰匙或隨身小包，它都能成為最溫柔的點睛之筆，陪你輕盈過好日。",
+                image: "wrist_strap.png"
+            }
+        };
+
+        let currentCategory = 'all';
+        let currentSort = 'default';
+
+        // 強制暗色模式
+        document.documentElement.classList.add('dark');
+        const starfieldEl = document.getElementById('starfield');
+        if (starfieldEl) starfieldEl.classList.remove('hidden');
+
+        function generateStars() {
+            const starfield = document.getElementById('starfield');
+            const auroras = starfield.querySelectorAll('.aurora');
+            starfield.innerHTML = '';
+            auroras.forEach(a => starfield.appendChild(a));
+
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight * 2;
+            const starDensity = Math.min(60, Math.floor(screenWidth / 22));
+
+            for (let i = 0; i < starDensity; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * screenHeight}px`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                starfield.appendChild(star);
+            }
+        }
+
+        // --- 商品動態渲染、篩選與排序邏輯 ---
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            // 1. 篩選
+            let list = Object.values(PRODUCT_DATABASE).filter(item => {
+                return currentCategory === 'all' || item.category === currentCategory;
+            });
+
+            // 2. 排序
+            if (currentSort === 'price-asc') {
+                list.sort((a, b) => a.price - b.price);
+            } else if (currentSort === 'price-desc') {
+                list.sort((a, b) => b.price - a.price);
+            }
+
+            // 3. 渲染
+            list.forEach(product => {
+                const tagHTML = product.tag ? `<span class="absolute top-4 left-4 ${product.tagClass} text-white text-[9px] px-2.5 py-1 tracking-widest uppercase rounded-sm">${product.tag}</span>` : '';
+                
+                const card = document.createElement('div');
+                card.className = "group bg-white dark:bg-[#1C1F26] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-neutral-100 dark:border-neutral-800/80";
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/5] bg-[#FAF7F2] dark:bg-[#232731] flex items-center justify-center p-8">
+                        <img src="${product.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="${product.title}">
+                        ${tagHTML}
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-stone-200 font-semibold">${product.title}</h3>
+                            <p class="text-xs text-stone-400 dark:text-stone-500 mt-1.5">${product.categoryText}</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
+                            <span class="font-medium text-amber-800 dark:text-amber-500 font-serif-brand text-lg">$${product.price}</span>
+                            <div class="flex space-x-2">
+<button onclick="openProductModal('${product.id}')" class="flex items-center gap-1.5 px-4 py-1.5 text-xs bg-amber-600 text-white rounded-lg hover:opacity-90 transition-all" title="查看詳情並加入購物車"><img src="trolley.png" class="w-3.5 h-3.5 brightness-0 invert" alt=""></button>                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // 切換 Tab 樣式
+            document.querySelectorAll('.category-tab').forEach(btn => {
+                btn.className = "category-tab px-5 py-2.5 rounded-full bg-white dark:bg-[#1C1F26] text-stone-500 hover:text-[#5A5048] dark:hover:text-white transition-all border border-stone-200/60 dark:border-stone-800";
+            });
+            const activeTab = document.getElementById(`tab-${category}`);
+            if (activeTab) {
+                activeTab.className = "category-tab px-5 py-2.5 rounded-full bg-[#5A5048] text-white dark:bg-amber-600 transition-all font-medium";
+            }
+            renderProducts();
+        }
+
+        function sortProducts(value) {
+            currentSort = value;
+            renderProducts();
+        }
+
+        // --- 購物車功能邏輯 ---
+        let cart = [];
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                renderCart();
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function addToCart(title, price, imageId) {
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ title, price, imageId, qty: 1 });
+            }
+            openToast(`成功將 "${title}" 放入提袋中！`);
+            updateCartCounter();
+            renderCart();
+        }
+
+        function updateCartCounter() {
+            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+            const badge = document.getElementById('cart-badge');
+            document.getElementById('cart-count').innerText = totalQty;
+            
+            if (totalQty > 0) {
+                badge.classList.remove('hidden');
+                badge.innerText = totalQty;
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            updateCartCounter();
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const emptyView = document.getElementById('empty-cart-view');
+            container.querySelectorAll('.cart-item-row').forEach(r => r.remove());
+
+            if (cart.length === 0) {
+                emptyView.classList.remove('hidden');
+                document.getElementById('cart-total-price').innerText = '$0.00';
+                document.getElementById('free-shipping-container').classList.add('hidden');
+                return;
+            }
+
+            emptyView.classList.add('hidden');
+            let itemSubtotal = 0;
+
+            cart.forEach((item, index) => {
+                const sub = item.price * item.qty;
+                itemSubtotal += sub;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item-row flex items-center justify-between border-b border-stone-100 dark:border-stone-800/60 pb-4';
+                row.innerHTML = `
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-stone-100 dark:bg-[#1E212A] flex items-center justify-center text-stone-600">
+                            <i class="fa-solid fa-circle text-stone-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-stone-800 dark:text-stone-200 max-w-[170px] truncate">${item.title}</p>
+                            <p class="text-[10px] text-stone-400 mt-1">$${item.price.toFixed(2)}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3.5">
+                        <div class="flex items-center border border-stone-200 dark:border-stone-800 rounded-lg bg-white dark:bg-[#1A1D25]">
+                            <button onclick="changeQty(${index}, -1)" class="px-2 py-0.5 text-xs text-stone-500 hover:bg-stone-50 dark:hover:bg-stone-800">-</button>
+                            <span class="px-2 text-xs font-semibold">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="px-2 py-0.5 text-xs text-stone-500 hover:bg-stone-50 dark:hover:bg-stone-800">+</button>
+                        </div>
+                        <span class="text-xs font-medium text-stone-700 dark:text-stone-300 font-serif-brand">$${sub.toFixed(2)}</span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            const shippingContainer = document.getElementById('free-shipping-container');
+            const shippingCostEl = document.getElementById('shipping-cost');
+            shippingContainer.classList.remove('hidden');
+
+            let finalShipping = 10.00;
+            if (itemSubtotal >= 80) {
+                finalShipping = 0;
+                shippingCostEl.innerText = '免費免運';
+                shippingCostEl.className = 'text-green-600 dark:text-green-400 font-medium';
+                document.getElementById('free-shipping-text').innerText = '🎉 已符合免運資格！';
+                document.getElementById('free-shipping-progress').style.width = '100%';
+            } else {
+                const diff = 80 - itemSubtotal;
+                shippingCostEl.innerText = `$${finalShipping.toFixed(2)}`;
+                shippingCostEl.className = 'font-medium';
+                document.getElementById('free-shipping-text').innerText = `還差 $${diff.toFixed(2)} 享免費送貨`;
+                document.getElementById('free-shipping-progress').style.width = `${(itemSubtotal / 80) * 100}%`;
+            }
+
+            document.getElementById('cart-total-price').innerText = `$${(itemSubtotal + finalShipping).toFixed(2)}`;
+        }
+
+        // --- 彈窗 Modal 控制 ---
+        function openProductModal(key) {
+            const product = PRODUCT_DATABASE[key];
+            if (!product) return;
+
+            document.getElementById('modal-product-title').innerText = product.title;
+            document.getElementById('modal-product-price').innerText = `$${product.price.toFixed(2)}`;
+            document.getElementById('modal-product-desc').innerText = product.desc;
+            document.getElementById('modal-product-category').innerText = product.categoryText.toUpperCase();
+            document.getElementById('modal-product-svg-container').innerHTML = `<img src="${product.image}" class="w-full h-full object-contain" alt="${product.title}">`;
+
+            document.getElementById('modal-add-btn').onclick = function() {
+                addToCart(product.title, product.price, key);
+                closeProductModal();
+            };
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function openToast(message) {
+            const toast = document.getElementById('toast-notif');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        function checkoutMock() {
+            if (cart.length === 0) return openToast("您的購物提袋空空如也，無法結帳唷！");
+            openToast("🔒 正在連接 SSL 安全付款頁面，請稍候...");
+            setTimeout(() => {
+                cart = [];
+                updateCartCounter();
+                toggleCart();
+                openToast("🎉 付款模擬成功！感謝您的選購，我們將立即安排手作排單！");
+            }, 2500);
+        }
+
+        // --- 初始化頁面商品 ---
+        window.onload = function() {
+            renderProducts();
+            if (html.classList.contains('dark')) generateStars();
+        }
+    </script>
+</body>
+</html>

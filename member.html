@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>會員中心 | HONEYMOON STAGE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .font-serif-brand {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.15em;
+        }
+        /* 磨砂玻璃特效 */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px rgba(255, 255, 255, 0.3) solid;
+            transition: background 0.5s, border 0.5s;
+        }
+        .dark .glass-panel {
+            background: rgba(13, 15, 20, 0.55);
+            border-bottom: 1px rgba(255, 255, 255, 0.05) solid;
+        }
+        /* 精緻滾動條 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(247, 242, 235, 0.6); }
+        .dark ::-webkit-scrollbar-track { background: rgba(13, 15, 20, 0.8); }
+        ::-webkit-scrollbar-thumb { background: #C3B1A0; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A89584; }
+        
+        /* 星空背景閃爍動畫 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .aurora {
+            filter: blur(80px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+        .btn-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-hover-effect:hover::after { height: 300%; }
+
+        /* 輸入框無邊框底部線條風格 */
+        .input-elegant {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #D6D3D1;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+            color: #4A423C;
+        }
+        .dark .input-elegant {
+            border-bottom: 1px solid #44403C;
+            color: #E2E8F0;
+        }
+        .input-elegant:focus {
+            outline: none;
+            border-bottom-color: #C3B1A0;
+        }
+    </style>
+</head>
+<body class="bg-[#FAF7F2] text-[#4A423C] dark:bg-[#0E1015] dark:text-[#E2E8F0] selection:bg-[#EAE1D4] selection:text-[#4A423C]">
+
+    <div id="starfield" class="hidden fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="aurora absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-indigo-500/30"></div>
+        <div class="aurora absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-500/20"></div>
+    </div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 md:px-12 flex justify-between items-center glass-panel shadow-sm">
+        <a href="index.html" class="flex flex-col leading-tight text-[#5A5048] dark:text-white transition-colors duration-300">
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">HONEYMOON</span>
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">STAGE</span>
+</a>
+        
+        <div class="hidden md:flex space-x-10 items-center text-xs tracking-[0.25em] font-light ml-auto mr-8">
+            <a href="shop.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">SHOP</a>
+            <a href="customization.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">CUSTOMIZATION</a>
+        </div>
+        <div class="flex items-center space-x-4 md:space-x-6 ml-4">
+            <button onclick="toggleCart()" class="relative p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+                <i class="fa-solid fa-bag-shopping text-lg md:text-xl"></i>
+                <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-amber-800 dark:bg-amber-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold scale-90 hidden">0</span>
+            </button>
+        <button onclick="window.location.href='member.html'" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+                <i class="fa-regular fa-user text-lg md:text-xl"></i>
+            </button>
+            </div>
+    </nav>
+
+
+    <header class="relative pt-32 pb-8 px-6 text-center z-10">
+        <span class="text-xs tracking-[0.3em] text-[#C3B1A0] dark:text-amber-500 uppercase font-medium">My Account</span>
+        <h1 class="text-3xl md:text-4xl font-serif-brand mt-3 text-[#5A5048] dark:text-white mb-4">會員中心</h1>
+        <div class="w-12 h-[1px] bg-[#C3B1A0] mx-auto"></div>
+    </header>
+
+    <main class="relative px-6 md:px-16 pb-24 z-10 max-w-6xl mx-auto w-full">
+        <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+            
+            <aside class="w-full md:w-64 flex-shrink-0 bg-white dark:bg-[#1C1F26] rounded-2xl p-6 shadow-sm border border-stone-100 dark:border-stone-800/80">
+                <div class="flex flex-col items-center pb-6 border-b border-stone-100 dark:border-stone-800 mb-6 text-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-[#EAE3D9] to-[#C3B1A0] p-1 mb-3">
+                        <div class="w-full h-full rounded-full bg-white dark:bg-stone-900 flex items-center justify-center text-xl font-serif-brand text-stone-500">
+                            H
+                        </div>
+                    </div>
+                    <h2 class="text-sm font-semibold tracking-wider">Hello, 品牌摯友</h2>
+                    <p class="text-[10px] text-stone-400 mt-1 uppercase tracking-widest">Moonlight VIP (月光會員)</p>
+                </div>
+
+                <nav class="space-y-2">
+                    <button onclick="switchTab('profile')" id="nav-profile" class="w-full text-left px-4 py-3 rounded-xl text-xs tracking-wider transition-all bg-[#5A5048] text-white dark:bg-amber-600 font-medium flex items-center shadow-sm">
+                        <i class="fa-regular fa-user w-6 text-center mr-2"></i> 個人中心
+                    </button>
+                    <button onclick="switchTab('orders')" id="nav-orders" class="w-full text-left px-4 py-3 rounded-xl text-xs tracking-wider text-stone-500 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-all font-medium flex items-center">
+                        <i class="fa-solid fa-box-open w-6 text-center mr-2"></i> 訂單管理
+                    </button>
+                    <button onclick="switchTab('benefits')" id="nav-benefits" class="w-full text-left px-4 py-3 rounded-xl text-xs tracking-wider text-stone-500 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-all font-medium flex items-center">
+                        <i class="fa-solid fa-wand-magic-sparkles w-6 text-center mr-2"></i> 會員權益
+                    </button>
+                    <div class="pt-4 mt-4 border-t border-stone-100 dark:border-stone-800">
+                        <button onclick="openToast('您已成功登出。')" class="w-full text-left px-4 py-3 rounded-xl text-xs tracking-wider text-red-800/70 dark:text-red-400/80 hover:bg-red-50 dark:hover:bg-red-950/20 transition-all font-medium flex items-center">
+                            <i class="fa-solid fa-arrow-right-from-bracket w-6 text-center mr-2"></i> 登出帳號
+                        </button>
+                    </div>
+                </nav>
+            </aside>
+
+            <div class="flex-grow w-full bg-white dark:bg-[#1C1F26] rounded-2xl p-6 md:p-10 shadow-sm border border-stone-100 dark:border-stone-800/80 min-h-[500px]">
+                
+                <section id="tab-content-profile" class="block animate-fade-in">
+                    <h2 class="text-xl font-serif-brand text-stone-800 dark:text-white mb-8 border-b border-stone-100 dark:border-stone-800 pb-4">Profile Info</h2>
+                    
+                    <form class="space-y-8 max-w-lg" onsubmit="event.preventDefault(); openToast('個人資料已成功更新！');">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-1">姓名 Name</label>
+                                <input type="text" class="input-elegant" value="王大吉" placeholder="請輸入姓名">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-1">生日 Birthday</label>
+                                <input type="date" class="input-elegant" value="2004-11-14">
+                                <p class="text-[9px] text-amber-700/70 mt-1">*生日填寫後不可修改，將於生日當月發放專屬購物禮金。</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-1">電子信箱 Email</label>
+                                <input type="email" class="input-elegant" value="daji@gmail.com" disabled>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-1">手機號碼 Phone</label>
+                                <input type="tel" class="input-elegant" value="0987-878-787" placeholder="請輸入手機">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-1">常用收件地址 Default Address</label>
+                            <input type="text" class="input-elegant" value="台中市北區三民路三段 (預設地址)" placeholder="請輸入詳細收件地址">
+                        </div>
+
+                        <button type="submit" class="mt-6 px-8 py-3 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-90 text-white text-xs tracking-widest uppercase rounded-lg transition-all shadow-md">
+                            儲存變更 Save Changes
+                        </button>
+                    </form>
+                </section>
+
+                <section id="tab-content-orders" class="hidden animate-fade-in">
+                    <h2 class="text-xl font-serif-brand text-stone-800 dark:text-white mb-6 border-b border-stone-100 dark:border-stone-800 pb-4">Order History</h2>
+                    
+                    <div class="flex space-x-6 mb-6 text-xs font-medium border-b border-stone-100 dark:border-stone-800">
+                        <button class="pb-2 border-b-2 border-amber-800 dark:border-amber-500 text-stone-800 dark:text-white">全部訂單</button>
+                        <button class="pb-2 text-stone-400 hover:text-stone-600 transition-colors">處理中 (1)</button>
+                        <button class="pb-2 text-stone-400 hover:text-stone-600 transition-colors">已完成 (2)</button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="border border-stone-200 dark:border-stone-800 rounded-xl p-5 hover:shadow-md transition-shadow bg-stone-50/50 dark:bg-stone-900/30">
+                            <div class="flex justify-between items-center mb-4 border-b border-stone-200/60 dark:border-stone-800 pb-3">
+                                <div>
+                                    <span class="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-400 px-2 py-1 rounded-sm uppercase tracking-wider font-semibold">排單手作中</span>
+                                    <span class="text-xs text-stone-500 ml-3 font-mono">#HM-260601-001</span>
+                                </div>
+                                <span class="text-xs text-stone-400">2026/06/01</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-16 h-16 bg-white dark:bg-[#1C1F26] rounded-lg border border-stone-100 dark:border-stone-700 flex items-center justify-center p-2">
+                                        <i class="fa-solid fa-wand-magic-sparkles text-amber-500 text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-stone-800 dark:text-stone-200">手工客製 | 香檳金鏈疊戴液態銀滴鎖骨項鍊</h4>
+                                        <p class="text-xs text-stone-400 mt-1">數量: 1</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-serif-brand font-medium text-amber-800 dark:text-amber-500">$62.00</p>
+                                    <button class="text-[10px] text-stone-500 hover:text-amber-800 dark:hover:text-amber-400 mt-2 underline underline-offset-2">查看明細</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-stone-200 dark:border-stone-800 rounded-xl p-5 hover:shadow-md transition-shadow bg-white dark:bg-transparent">
+                            <div class="flex justify-between items-center mb-4 border-b border-stone-200/60 dark:border-stone-800 pb-3">
+                                <div>
+                                    <span class="text-[10px] bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300 px-2 py-1 rounded-sm uppercase tracking-wider font-semibold">已送達完成</span>
+                                    <span class="text-xs text-stone-500 ml-3 font-mono">#HM-251215-088</span>
+                                </div>
+                                <span class="text-xs text-stone-400">2025/12/15</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-16 h-16 bg-[#FAF7F2] dark:bg-[#232731] rounded-lg overflow-hidden border border-stone-100 dark:border-stone-700">
+                                        <img src="ring.jpg" class="w-full h-full object-cover" alt="戒指">
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-stone-800 dark:text-stone-200">鈕扣花串珠戒指</h4>
+                                        <p class="text-xs text-stone-400 mt-1">數量: 1</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-serif-brand font-medium text-stone-700 dark:text-stone-300">$200.00</p>
+                                    <button onclick="window.location.href='shop.html'" class="text-[10px] text-stone-500 hover:text-amber-800 dark:hover:text-amber-400 mt-2 border border-stone-300 px-3 py-1 rounded-full transition-colors">再次購買</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-content-benefits" class="hidden animate-fade-in">
+                    <h2 class="text-xl font-serif-brand text-stone-800 dark:text-white mb-6 border-b border-stone-100 dark:border-stone-800 pb-4">Membership Benefits</h2>
+                    
+                    <div class="relative w-full max-w-md mx-auto h-48 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-xl mb-10 border border-amber-200/30">
+                        <div class="absolute inset-0 bg-gradient-to-br from-stone-800 via-[#5A5048] to-amber-900 z-0"></div>
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/20 blur-2xl rounded-full z-0"></div>
+                        
+                        <div class="relative z-10 flex justify-between items-start">
+                            <div>
+                                <p class="text-[10px] text-amber-200/80 tracking-widest uppercase font-semibold mb-1">Current Tier</p>
+                                <h3 class="text-2xl font-serif-brand text-white tracking-widest">Moonlight VIP</h3>
+                                <p class="text-xs text-stone-300 mt-1">月光會員</p>
+                            </div>
+                            <i class="fa-regular fa-moon text-4xl text-amber-200/50"></i>
+                        </div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex justify-between text-xs text-stone-300 mb-2">
+                                <span>累積消費 $1,520</span>
+                                <span>距下一級差 $1,480</span>
+                            </div>
+                            <div class="w-full bg-stone-900/50 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-amber-300 h-full w-[50%]"></div>
+                            </div>
+                            <p class="text-[9px] text-stone-400 mt-2 text-right">升級至 Aurora VVIP 極光會員</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1A1D25] flex flex-col items-center text-center">
+                            <i class="fa-solid fa-cloud text-stone-300 text-2xl mb-3"></i>
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-stone-500 mb-1">Dreamer</h4>
+                            <p class="text-[10px] text-stone-400 mb-4 border-b border-stone-100 dark:border-stone-800 pb-2 w-full">白雲會員 (註冊即享)</p>
+                            <ul class="text-[11px] text-stone-500 space-y-2 text-left w-full">
+                                <li><i class="fa-solid fa-check text-stone-300 mr-1.5"></i> 新客首購 95 折</li>
+                                <li><i class="fa-solid fa-check text-stone-300 mr-1.5"></i> 單筆滿 $80 免運</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 rounded-xl border-2 border-[#C3B1A0]/60 bg-amber-50/40 dark:bg-amber-900/10 flex flex-col items-center text-center transform scale-105 shadow-md">
+                            <div class="bg-amber-800 dark:bg-amber-600 text-white text-[9px] px-2 py-0.5 rounded-full absolute -top-2.5">您目前的等級</div>
+                            <i class="fa-regular fa-moon text-[#C3B1A0] text-2xl mb-3 mt-2"></i>
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-amber-800 dark:text-amber-500 mb-1">Moonlight VIP</h4>
+                            <p class="text-[10px] text-stone-500 mb-4 border-b border-[#C3B1A0]/30 pb-2 w-full">月光會員 (滿 $1,000)</p>
+                            <ul class="text-[11px] text-stone-700 dark:text-stone-300 space-y-2 text-left w-full">
+                                <li><i class="fa-solid fa-star text-amber-500 mr-1.5"></i> 全館常態 9 折</li>
+                                <li><i class="fa-solid fa-star text-amber-500 mr-1.5"></i> 單筆滿 $50 免運</li>
+                                <li><i class="fa-solid fa-star text-amber-500 mr-1.5"></i> 生日專屬 $100 禮金</li>
+                                <li><i class="fa-solid fa-star text-amber-500 mr-1.5"></i> 客製工坊專屬隱藏墜飾</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1A1D25] flex flex-col items-center text-center opacity-80">
+                            <i class="fa-regular fa-star text-stone-300 text-2xl mb-3"></i>
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-stone-500 mb-1">Aurora VVIP</h4>
+                            <p class="text-[10px] text-stone-400 mb-4 border-b border-stone-100 dark:border-stone-800 pb-2 w-full">極光會員 (滿 $3,000)</p>
+                            <ul class="text-[11px] text-stone-500 space-y-2 text-left w-full">
+                                <li><i class="fa-solid fa-lock text-stone-300 mr-1.5"></i> 全館常態 85 折</li>
+                                <li><i class="fa-solid fa-lock text-stone-300 mr-1.5"></i> 訂單無條件免運</li>
+                                <li><i class="fa-solid fa-lock text-stone-300 mr-1.5"></i> 生日專屬手作訂製禮</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-stone-300 dark:border-stone-800 text-center text-xs text-stone-400 relative z-10 bg-[#FAF7F2] dark:bg-[#0E1015]">
+        <p class="font-serif-brand tracking-[0.2em] text-stone-600 dark:text-stone-300 mb-2 text-base">HONEYMOON STAGE STUDIO</p>
+        <p>© 2026 HONEYMOON STAGE. Designed with love. All rights reserved.</p>
+    </footer>
+
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-[#111319] shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-stone-100 dark:border-stone-800/80">
+        <div class="p-6 border-b border-stone-100 dark:border-stone-800 flex justify-between items-center">
+            <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-white flex items-center font-bold">
+                <i class="fa-solid fa-bag-shopping mr-3 text-lg"></i>您的購物提袋 (<span id="cart-count">0</span>)
+            </h3>
+            <button onclick="toggleCart()" class="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-full text-stone-500 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <div id="empty-cart-view" class="h-full flex flex-col items-center justify-center text-center text-stone-400 py-12">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-[#C3B1A0] mb-4"></i>
+                <p class="text-sm font-medium">您的購物袋目前是空的</p>
+                <button onclick="toggleCart(); window.location.href='shop.html'" class="mt-6 px-8 py-2.5 bg-[#5A5048] dark:bg-amber-600 text-white text-xs tracking-widest uppercase rounded-lg">前往逛逛 Explore</button>
+            </div>
+        </div>
+        <div class="p-6 border-t border-stone-100 dark:border-stone-800 bg-stone-50 dark:bg-[#181B22] space-y-4">
+            <div class="flex justify-between items-center text-base font-semibold">
+                <span>合計總金額</span>
+                <span id="cart-total-price" class="text-amber-800 dark:text-amber-500 font-serif-brand text-xl">$0.00</span>
+            </div>
+            <button onclick="openToast('購物車內無商品！')" class="w-full py-4 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-95 text-white text-xs tracking-[0.2em] uppercase font-bold rounded-xl transition-all shadow-md btn-hover-effect">
+                前往結帳 CHECKOUT
+            </button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity duration-300"></div>
+
+    <div id="toast-notif" class="fixed bottom-6 left-6 z-50 bg-[#5A5048] dark:bg-amber-600 text-white text-xs tracking-wider px-5 py-4 rounded-2xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-sparkles text-amber-300"></i>
+        <span id="toast-message">操作成功！</span>
+    </div>
+
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <script>
+        // --- Tab 頁籤切換邏輯 ---
+        function switchTab(tabId) {
+            // 隱藏所有內容區塊
+            ['profile', 'orders', 'benefits'].forEach(id => {
+                document.getElementById(`tab-content-${id}`).classList.add('hidden');
+                document.getElementById(`tab-content-${id}`).classList.remove('block');
+                
+                // 重置導覽按鈕樣式
+                const btn = document.getElementById(`nav-${id}`);
+                btn.className = "w-full text-left px-4 py-3 rounded-xl text-xs tracking-wider text-stone-500 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-all font-medium flex items-center";
+            });
+
+            // 顯示選擇的區塊
+            document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-content-${tabId}`).classList.add('block');
+            
+            // 套用啟動狀態的導覽按鈕樣式
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            activeBtn.className = "w-full text-left px-4 py-3 rounded-xl text-xs tracking-wider transition-all bg-[#5A5048] text-white dark:bg-amber-600 font-medium flex items-center shadow-sm";
+        }
+
+        // 強制暗色模式
+        document.documentElement.classList.add('dark');
+        const starfieldEl = document.getElementById('starfield');
+        if (starfieldEl) starfieldEl.classList.remove('hidden');
+
+        function generateStars() {
+            const starfield = document.getElementById('starfield');
+            const auroras = starfield.querySelectorAll('.aurora');
+            starfield.innerHTML = '';
+            auroras.forEach(a => starfield.appendChild(a));
+
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight * 1.5;
+            const starDensity = Math.min(50, Math.floor(screenWidth / 25));
+
+            for (let i = 0; i < starDensity; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * screenHeight}px`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                starfield.appendChild(star);
+            }
+        }
+        window.addEventListener('resize', () => { if (html.classList.contains('dark')) generateStars(); });
+
+        // --- 購物車與吐司提示 (介面通用框架) ---
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function openToast(message) {
+            const toast = document.getElementById('toast-notif');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

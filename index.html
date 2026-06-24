@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
-<html lang="zh-TW" class="scroll-smooth">
+<html lang="zh-TW" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>HONEYMOON STAGE | 手作浪漫飾品設計首頁</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -104,7 +104,7 @@
         }
     </style>
 </head>
-<body class="bg-[#FAF7F2] text-[#4A423C] dark:bg-[#0D0F14] dark:text-[#E2E8F0] selection:bg-[#EAE1D4] selection:text-[#4A423C]">
+<body class="bg-[#FAF7F2] text-[#4A423C] dark:bg-[#fefbf8] dark:text-[#E2E8F0] selection:bg-[#EAE1D4] selection:text-[#4A423C]">
 
     <!-- 星空與極光流光容器 (僅在暗色主題/暮光模式下顯示) -->
     <div id="starfield" class="hidden fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -114,24 +114,19 @@
 
     <!-- 頂部導覽列 Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 md:px-12 flex justify-between items-center glass-panel shadow-sm">
-        <a href="#hero" class="text-lg md:text-2xl font-serif-brand font-medium tracking-[0.2em] text-[#5A5048] dark:text-white transition-colors duration-300">
-            HONEYMOON STAGE
-        </a>
+ <a href="#hero" class="flex flex-col leading-tight text-[#5A5048] dark:text-white transition-colors duration-300">
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">HONEYMOON</span>
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">STAGE</span>
+</a>
         
         <!-- 桌機版選單 -->
-        <div class="hidden md:flex space-x-10 items-center text-xs tracking-[0.25em] font-light">
-            <a href="#shop" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">SHOP</a>
-            <a href="#customization" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">CUSTOMIZATION</a>
-            <a href="#about" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">ABOUT US</a>
-            <a href="#guide" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">SHOPPING GUIDE</a>
+<div class="hidden md:flex space-x-10 items-center text-xs tracking-[0.25em] font-light ml-auto mr-8">
+            <a href="shop.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">SHOP</a>
+            <a href="customization.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">CUSTOMIZATION</a>
         </div>
 
         <!-- 右側功能按鈕 -->
         <div class="flex items-center space-x-4 md:space-x-6">
-            <!-- 暮光/日光主題切換 -->
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none" title="切換主題">
-                <i id="theme-icon" class="fa-regular fa-moon text-lg md:text-xl"></i>
-            </button>
             
             <!-- 購物車按鈕 -->
             <button onclick="toggleCart()" class="relative p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
@@ -140,7 +135,7 @@
             </button>
             
             <!-- 會員中心 -->
-            <button onclick="openToast('會員中心功能即將上線，敬請期待！')" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+            <button onclick="window.location.href='member.html'"class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
                 <i class="fa-regular fa-user text-lg md:text-xl"></i>
             </button>
         </div>
@@ -149,9 +144,9 @@
     <!-- 右側懸浮導覽錨點 -->
     <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col space-y-5">
         <a href="#hero" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="首頁"></a>
-        <a href="#shop" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="精選系列"></a>
-        <a href="#customization" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="客製化工坊"></a>
+        <a href="#marquee" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="精選商品"></a>
         <a href="#about" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="品牌故事"></a>
+        <a href="#features" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="品牌特色"></a>
         <a href="#guide" class="nav-dot w-2.5 h-2.5 rounded-full border border-[#C3B1A0] bg-[#C3B1A0]/20 hover:bg-[#C3B1A0] transition-all duration-300" title="購物指南"></a>
     </div>
 
@@ -182,7 +177,7 @@
                 </h1>
                 
                 <!-- 進入購物按鈕 -->
-                <a href="#shop" class="group relative px-12 py-4 border border-white/75 overflow-hidden text-xs tracking-[0.3em] transition-all duration-500 hover:border-white rounded-sm btn-hover-effect">
+                <a href="shop.html" class="group relative px-12 py-4 border border-white/75 overflow-hidden text-xs tracking-[0.3em] transition-all duration-500 hover:border-white rounded-sm btn-hover-effect">
                     <span class="relative z-10 group-hover:text-stone-900 dark:group-hover:text-stone-900 transition-colors duration-500">立即探索 SHOP NOW</span>
                     <span class="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
                 </a>
@@ -197,290 +192,107 @@
         </section>
 
         <!-- SECTION 2: SHOP PRODUCTS 精選珠寶系列 -->
-        <section id="shop" class="scroll-section relative py-24 px-6 md:px-16 flex flex-col justify-center bg-[#FDFBF7] dark:bg-[#111319]">
-            <div class="max-w-7xl mx-auto w-full relative z-10">
-                <!-- 區段標題 -->
-                <div class="text-center mb-16">
-                    <span class="text-xs tracking-[0.3em] text-[#C3B1A0] dark:text-amber-500 uppercase font-medium">Selected Collection</span>
-                    <h2 class="text-3xl md:text-4xl font-serif-brand mt-2 text-[#5A5048] dark:text-white">精選系列商品</h2>
-                    <div class="w-12 h-[1px] bg-[#C3B1A0] mx-auto mt-4"></div>
-                </div>
-
-                <!-- 商品展示網格 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    
-                    <!-- 商品 1: 閃閃好日 -->
-                    <div class="group bg-white dark:bg-[#1C1F26] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-neutral-100 dark:border-neutral-800/80">
-                        <div class="relative overflow-hidden aspect-[4/5] bg-[#FAF7F2] dark:bg-[#232731] flex items-center justify-center p-8">
-                            <img src="necklace.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="閃閃好日">
-                            <span class="absolute top-4 left-4 bg-[#C3B1A0]/90 text-white text-[9px] px-2.5 py-1 tracking-widest uppercase rounded-sm">經典熱銷</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-stone-200 font-semibold">Pearl Drip 項鍊</h3>
-                                <p class="text-xs text-stone-400 dark:text-stone-500 mt-1.5"></p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
-                                <span class="font-medium text-amber-800 dark:text-amber-500 font-serif-brand text-lg">$620</span>
-                                <div class="flex space-x-2">
-                                    <button onclick="openProductModal('pearl_earrings')" class="px-3.5 py-1.5 text-xs border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all">詳情</button>
-                                    <button onclick="addToCart('Pearl Drip Earrings', 48, 'pearl_earrings')" class="p-2 text-xs bg-[#5A5048] dark:bg-amber-600 text-white rounded-lg hover:opacity-90 transition-all" title="加入購物車"><i class="fa-solid fa-plus px-0.5"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 商品 2: 疊戴對戒 -->
-                    <div class="group bg-white dark:bg-[#1C1F26] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-neutral-100 dark:border-neutral-800/80">
-                        <div class="relative overflow-hidden aspect-[4/5] bg-[#FAF7F2] dark:bg-[#232731] flex items-center justify-center p-8">
-                            <img src="ring.JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-amber-700/80 text-white text-[9px] px-2.5 py-1 tracking-widest uppercase rounded-sm">人氣推薦</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-stone-200 font-semibold">鈕扣花串珠戒指</h3>
-                                <p class="text-xs text-stone-400 dark:text-stone-500 mt-1.5">夏日限定款</p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
-                                <span class="font-medium text-amber-800 dark:text-amber-500 font-serif-brand text-lg">$200</span>
-                                <div class="flex space-x-2">
-                                    <button onclick="openProductModal('stacked_ring')" class="px-3.5 py-1.5 text-xs border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all">詳情</button>
-                                    <button onclick="addToCart('Stacked Ring Set', 56, 'stacked_ring')" class="p-2 text-xs bg-[#5A5048] dark:bg-amber-600 text-white rounded-lg hover:opacity-90 transition-all" title="加入購物車"><i class="fa-solid fa-plus px-0.5"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 商品 3: 蝴蝶結手鍊 -->
-                    <div class="group bg-white dark:bg-[#1C1F26] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-neutral-100 dark:border-neutral-800/80">
-                        <div class="relative overflow-hidden aspect-[4/5] bg-[#FAF7F2] dark:bg-[#232731] flex items-center justify-center p-8">
-                            <svg class="w-2/3 h-2/3 object-contain transition-transform duration-700 group-hover:scale-110" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 60 C 35 30, 65 30, 85 60" stroke="#C3B1A0" stroke-width="1.5" stroke-dasharray="3 3" />
-                                <path d="M15 60 C 35 90, 65 90, 85 60" stroke="#C3B1A0" stroke-width="1.5" stroke-dasharray="3 3" />
-                                <circle cx="50" cy="60" r="3.5" fill="#C3B1A0" />
-                                <path d="M50 60 C40 50, 42 42, 50 60" fill="#EAE1D4" stroke="#C3B1A0" stroke-width="1" />
-                                <path d="M50 60 C60 50, 58 42, 50 60" fill="#EAE1D4" stroke="#C3B1A0" stroke-width="1" />
-                                <path d="M50 60 C45 75, 40 78, 38 82" stroke="#C3B1A0" stroke-width="1" />
-                                <path d="M50 60 C55 75, 60 78, 62 82" stroke="#C3B1A0" stroke-width="1" />
-                            </svg>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-stone-200 font-semibold">復古精靈手鍊</h3>
-                                <p class="text-xs text-stone-400 dark:text-stone-500 mt-1.5">法式緞帶微鑲白水晶手鍊</p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
-                                <span class="font-medium text-amber-800 dark:text-amber-500 font-serif-brand text-lg">$39.00</span>
-                                <div class="flex space-x-2">
-                                    <button onclick="openProductModal('bow_bracelet')" class="px-3.5 py-1.5 text-xs border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all">詳情</button>
-                                    <button onclick="addToCart('Ethereal Bow Bracelet', 39, 'bow_bracelet')" class="p-2 text-xs bg-[#5A5048] dark:bg-amber-600 text-white rounded-lg hover:opacity-90 transition-all" title="加入購物車"><i class="fa-solid fa-plus px-0.5"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 商品 4: 頸鍊 (同上傳圖片之款式設計) -->
-                    <div class="group bg-white dark:bg-[#1C1F26] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-neutral-100 dark:border-neutral-800/80">
-                        <div class="relative overflow-hidden aspect-[4/5] bg-[#FAF7F2] dark:bg-[#232731] flex items-center justify-center p-8">
-                            <svg class="w-2/3 h-2/3 object-contain transition-transform duration-700 group-hover:scale-110" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M25 35 C 30 72, 70 72, 75 35" stroke="#C3B1A0" stroke-width="2.5" />
-                                <ellipse cx="28" cy="38" rx="2" ry="2" fill="#EAE1D4" />
-                                <ellipse cx="32" cy="46" rx="3" ry="3" fill="#FFF" />
-                                <ellipse cx="38" cy="52" rx="2.5" ry="2.5" fill="#EAE1D4" />
-                                <ellipse cx="62" cy="52" rx="2" ry="2" fill="#EAE1D4" />
-                                <ellipse cx="68" cy="46" rx="2" ry="2" fill="#FFF" />
-                                <ellipse cx="50" cy="58" rx="4" ry="4" fill="#FFF" stroke="#C3B1A0" />
-                                <path d="M50 62 V82" stroke="#C3B1A0" stroke-width="1.5" />
-                                <path d="M47 82 H53 L50 96 Z" fill="#EAE1D4" stroke="#C3B1A0" stroke-width="1" />
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-indigo-700/80 text-white text-[9px] px-2.5 py-1 tracking-widest uppercase rounded-sm">限定珍藏</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-stone-200 font-semibold">羽毛流光鎖骨鏈</h3>
-                                <p class="text-xs text-stone-400 dark:text-stone-500 mt-1.5">柔軟毛絨蕾絲鏈身 & 液態銀滴墜飾</p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
-                                <span class="font-medium text-amber-800 dark:text-amber-500 font-serif-brand text-lg">$75.00</span>
-                                <div class="flex space-x-2">
-                                    <button onclick="openProductModal('drip_choker')" class="px-3.5 py-1.5 text-xs border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all">詳情</button>
-                                    <button onclick="addToCart('Honeymoon Drip Choker', 75, 'drip_choker')" class="p-2 text-xs bg-[#5A5048] dark:bg-amber-600 text-white rounded-lg hover:opacity-90 transition-all" title="加入購物車"><i class="fa-solid fa-plus px-0.5"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
 
         <!-- SECTION 3: INTERACTIVE CUSTOMIZATION 客製化工坊 -->
-        <section id="customization" class="scroll-section relative py-24 px-6 md:px-16 flex flex-col justify-center bg-[#F7F2EB] dark:bg-[#0E1015] overflow-hidden">
-            <div class="max-w-6xl mx-auto w-full relative z-10">
-                <div class="text-center mb-12">
-                    <span class="text-xs tracking-[0.3em] text-[#C3B1A0] dark:text-amber-500 uppercase font-medium">Bespoke Jewelry</span>
-                    <h2 class="text-3xl md:text-4xl font-serif-brand mt-2 text-[#5A5048] dark:text-white">手作客製化工坊</h2>
-                    <p class="text-sm font-light text-stone-500 dark:text-stone-400 mt-2">設計屬於您自己浪漫篇章的項鍊，挑選喜愛的鏈條、串珠疊加以及吊墜款式</p>
+
+        <!-- SECTION: MARQUEE 跑馬燈精選商品 -->
+        <section id="marquee" class="scroll-section relative flex flex-col items-center justify-center overflow-hidden bg-[#0E1015]">
+            <div class="text-center mb-12 z-10 px-6">
+                <span class="text-xs tracking-[0.3em] text-amber-500 uppercase font-medium">Featured Picks</span>
+                <h2 class="text-3xl md:text-4xl font-serif-brand mt-2 text-white">本週主打商品</h2>
+            </div>
+
+            <div class="marquee-wrap relative w-full overflow-hidden">
+                <div class="marquee-track flex gap-6">
+            <button onclick="openProductModal('pearl_earrings')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="necklace.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="閃閃好日">
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-                    <!-- 左欄：可動態即時渲染的項鍊 SVG 畫布 -->
-                    <div class="lg:col-span-7 bg-white dark:bg-[#181B22] rounded-3xl p-6 md:p-8 flex flex-col items-center justify-center border border-[#EBE3D7]/60 dark:border-stone-800/80 shadow-md relative min-h-[400px]">
-                        <span class="absolute top-5 left-5 text-[9px] tracking-widest uppercase text-stone-400 dark:text-stone-500 font-bold"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>即時設計預覽 (Live View)</span>
-                        
-                        <!-- 動態變更的 SVG 模型 -->
-                        <svg id="custom-necklace-svg" class="w-full max-w-[320px] h-auto drop-shadow-xl" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- 背景人台 mannequin -->
-                            <path d="M40 210 C40 160 60 110 100 110 C140 110 160 160 160 210" stroke="#EAE3D9" stroke-width="4.5" stroke-linecap="round" />
-                            <ellipse cx="100" cy="110" rx="35" ry="12" fill="#EAE3D9" stroke="#DDD4C8" stroke-width="1.5" />
-                            <path d="M65 110 C65 140 135 140 135 110" fill="#ECE5DB" />
-                            
-                            <!-- 1. 鏈條鏈身選項 -->
-                            <!-- 銀鏈 -->
-                            <path id="svg-chain-silver" d="M55 92 C 70 145, 130 145, 145 92" stroke="#BAC4CC" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 3" class="transition-all duration-300" />
-                            <!-- 金鏈 -->
-                            <path id="svg-chain-gold" d="M55 92 C 70 145, 130 145, 145 92" stroke="#E5C185" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 3" class="hidden transition-all duration-300" />
-                            <!-- 蕾絲緞帶 -->
-                            <path id="svg-chain-ribbon" d="M55 92 C 70 145, 130 145, 145 92" stroke="#E6DED5" stroke-width="7" stroke-linecap="round" class="hidden opacity-80 transition-all duration-300" />
-                            
-                            <!-- 2. 珍珠穿孔配件裝飾 (開關) -->
-                            <g id="svg-beads-overlay" class="hidden transition-all duration-300">
-                                <circle cx="62" cy="104" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                                <circle cx="72" cy="115" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                                <circle cx="85" cy="123" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                                <circle cx="100" cy="126" r="4.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                                <circle cx="115" cy="123" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                                <circle cx="128" cy="115" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                                <circle cx="138" cy="104" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
-                            </g>
-
-                            <!-- 3. 主體設計吊墜 (四擇一) -->
-                            <g id="svg-charm-container" transform="translate(100, 126)" class="transition-transform duration-500">
-                                <circle cx="0" cy="4" r="2.5" stroke="#A8A29E" stroke-width="1.5" fill="none" />
-                                
-                                <!-- 巴洛克淡水真珠 -->
-                                <g id="charm-pearl" class="transition-all duration-300">
-                                    <path d="M-5 10 C-5 6 5 6 5 10 C5 16 3 24 0 24 C-3 24 -5 16 -5 10" fill="#F8F6F2" stroke="#C3B1A0" stroke-width="1.5" />
-                                    <ellipse cx="-1.5" cy="11" rx="1.2" ry="2" fill="#FFF" opacity="0.8" />
-                                </g>
-
-                                <!-- 浪漫新月 -->
-                                <g id="charm-moon" class="hidden transition-all duration-300">
-                                    <path d="M-6 8 C6 4 10 20 -2 24 C-10 24 -12 12 -6 8 Z" fill="#F59E0B" stroke="#D97706" stroke-width="1.2" />
-                                    <circle cx="2" cy="11" r="1.5" fill="#FFF" />
-                                </g>
-
-                                <!-- 熔岩銀滴 -->
-                                <g id="charm-drip" class="hidden transition-all duration-300">
-                                    <path d="M-4 6 H4 C4 6 5 12 3 14 C1 16 2 24 0 24 C-2 24 -1 16 -3 14 C-5 12 -4 6 -4 6 Z" fill="#BAC4CC" stroke="#71717A" stroke-width="1" />
-                                    <path d="M-1 12 V18" stroke="#FFF" stroke-width="0.8" />
-                                </g>
-
-                                <!-- 復古迷你蝴蝶結 -->
-                                <g id="charm-bow" class="hidden transition-all duration-300">
-                                    <path d="M-7 11 C-12 7 -10 3 -7 11 Z" fill="#F2ECE4" stroke="#78716C" stroke-width="1.2" />
-                                    <path d="M7 11 C12 7 10 3 7 11 Z" fill="#F2ECE4" stroke="#78716C" stroke-width="1.2" />
-                                    <circle cx="0" cy="11" r="2.2" fill="#78716C" />
-                                    <path d="M-2 12 L-6 20" stroke="#78716C" stroke-width="1" />
-                                    <path d="M2 12 L6 20" stroke="#78716C" stroke-width="1" />
-                                </g>
-                            </g>
-                        </svg>
-
-                        <!-- 客製即時價格顯示 -->
-                        <div class="mt-4 text-center">
-                            <span class="text-xs text-stone-400 uppercase tracking-widest">估算手作訂製售價</span>
-                            <div class="text-3xl font-serif-brand text-amber-800 dark:text-amber-500 font-medium mt-1">
-                                $<span id="custom-total-price">40.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 右欄：客製化控制面板 -->
-                    <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
-                        <div class="space-y-6">
-                            <!-- 第一步 -->
-                            <div>
-                                <label class="block text-xs uppercase tracking-widest text-[#8E8277] dark:text-stone-400 font-bold mb-3">步驟一：挑選鏈條款式</label>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <button onclick="selectChain('silver', 20)" id="btn-chain-silver" class="custom-option-btn p-3 text-center rounded-xl border-2 border-amber-800/80 bg-amber-50/50 dark:bg-amber-950/20 text-xs tracking-wider transition-all">
-                                        <i class="fa-solid fa-link block text-lg mb-1.5 text-slate-400"></i>
-                                        925 純銀
-                                    </button>
-                                    <button onclick="selectChain('gold', 25)" id="btn-chain-gold" class="custom-option-btn p-3 text-center rounded-xl border border-stone-200 dark:border-stone-800 text-xs tracking-wider transition-all">
-                                        <i class="fa-solid fa-link block text-lg mb-1.5 text-amber-400"></i>
-                                        香檳金
-                                    </button>
-                                    <button onclick="selectChain('ribbon', 18)" id="btn-chain-ribbon" class="custom-option-btn p-3 text-center rounded-xl border border-stone-200 dark:border-stone-800 text-xs tracking-wider transition-all">
-                                        <i class="fa-solid fa-ribbon block text-lg mb-1.5 text-stone-300"></i>
-                                        蕾絲緞帶
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- 第二步 -->
-                            <div>
-                                <label class="block text-xs uppercase tracking-widest text-[#8E8277] dark:text-stone-400 font-bold mb-3">步驟二：鏈條細節疊加</label>
-                                <div class="flex items-center justify-between p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1C1F26]">
-                                    <div class="flex items-center space-x-3">
-                                        <i class="fa-solid fa-circle text-stone-300 text-lg"></i>
-                                        <div>
-                                            <p class="text-xs font-semibold">加入天然淡水珍珠串排</p>
-                                            <p class="text-[10px] text-stone-400">在鏈身中間穿插精選珍珠疊加 (+$15)</p>
-                                        </div>
-                                    </div>
-                                    <input type="checkbox" id="pearl-overlay-toggle" onchange="togglePearlOverlay(this)" class="w-5 h-5 rounded accent-amber-700 cursor-pointer">
-                                </div>
-                            </div>
-
-                            <!-- 第三步 -->
-                            <div>
-                                <label class="block text-xs uppercase tracking-widest text-[#8E8277] dark:text-stone-400 font-bold mb-3">步驟三：搭配主體墜飾</label>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <button onclick="selectCharm('pearl', 20)" id="btn-charm-pearl" class="custom-charm-btn p-3 text-left rounded-xl border-2 border-amber-800/80 bg-amber-50/50 dark:bg-amber-950/20 text-xs transition-all flex items-center space-x-3">
-                                        <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-600"><i class="fa-regular fa-circle"></i></div>
-                                        <div>
-                                            <p class="font-medium">巴洛克淡水珠</p>
-                                            <p class="text-[10px] text-stone-400">+$20.00</p>
-                                        </div>
-                                    </button>
-                                    <button onclick="selectCharm('moon', 18)" id="btn-charm-moon" class="custom-charm-btn p-3 text-left rounded-xl border border-stone-200 dark:border-stone-800 text-xs transition-all flex items-center space-x-3">
-                                        <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-amber-500"><i class="fa-solid fa-moon"></i></div>
-                                        <div>
-                                            <p class="font-medium">浪漫新月星</p>
-                                            <p class="text-[10px] text-stone-400">+$18.00</p>
-                                        </div>
-                                    </button>
-                                    <button onclick="selectCharm('drip', 22)" id="btn-charm-drip" class="custom-charm-btn p-3 text-left rounded-xl border border-stone-200 dark:border-stone-800 text-xs transition-all flex items-center space-x-3">
-                                        <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-zinc-400"><i class="fa-solid fa-droplet"></i></div>
-                                        <div>
-                                            <p class="font-medium">液態熔岩銀滴</p>
-                                            <p class="text-[10px] text-stone-400">+$22.00</p>
-                                        </div>
-                                    </button>
-                                    <button onclick="selectCharm('bow', 15)" id="btn-charm-bow" class="custom-charm-btn p-3 text-left rounded-xl border border-stone-200 dark:border-stone-800 text-xs transition-all flex items-center space-x-3">
-                                        <div class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-rose-300"><i class="fa-solid fa-ribbon"></i></div>
-                                        <div>
-                                            <p class="font-medium">復古精靈蝶結</p>
-                                            <p class="text-[10px] text-stone-400">+$15.00</p>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 加購與完成按鈕 -->
-                        <div class="pt-6 border-t border-stone-200 dark:border-stone-800">
-                            <button onclick="addCustomToCart()" class="w-full py-4 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-95 text-white text-xs tracking-[0.2em] uppercase font-semibold rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 btn-hover-effect">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                <span>將獨家手作訂製款加入購物車</span>
-                            </button>
-                        </div>
-                    </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">閃閃好日</p>
+                    <p class="text-amber-500 text-sm mt-1">$620.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('stacked_ring')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="ring.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="鈕扣花串珠戒指">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">鈕扣花串珠戒指</p>
+                    <p class="text-amber-500 text-sm mt-1">$200.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('pearl_earrings')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="necklace.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="閃閃好日">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">閃閃好日</p>
+                    <p class="text-amber-500 text-sm mt-1">$620.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('stacked_ring')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="ring.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="鈕扣花串珠戒指">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">鈕扣花串珠戒指</p>
+                    <p class="text-amber-500 text-sm mt-1">$200.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('pearl_earrings')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="necklace.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="閃閃好日">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">閃閃好日</p>
+                    <p class="text-amber-500 text-sm mt-1">$620.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('stacked_ring')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="ring.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="鈕扣花串珠戒指">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">鈕扣花串珠戒指</p>
+                    <p class="text-amber-500 text-sm mt-1">$200.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('pearl_earrings')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="necklace.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="閃閃好日">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">閃閃好日</p>
+                    <p class="text-amber-500 text-sm mt-1">$620.00</p>
+                </div>
+            </button>
+            <button onclick="openProductModal('stacked_ring')" class="marquee-item flex-shrink-0 w-56 bg-[#1C1F26] rounded-xl overflow-hidden border border-white/10 hover:border-amber-500/60 transition-all duration-300 group">
+                <div class="aspect-square bg-[#232731] flex items-center justify-center p-6 overflow-hidden">
+                    <img src="ring.jpg" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" alt="鈕扣花串珠戒指">
+                </div>
+                <div class="p-4 text-left">
+                    <p class="text-white text-sm font-medium">鈕扣花串珠戒指</p>
+                    <p class="text-amber-500 text-sm mt-1">$200.00</p>
+                </div>
+            </button>
                 </div>
             </div>
         </section>
+
+        <style>
+        .marquee-track {
+            animation: marqueeScroll 22s linear infinite;
+            width: max-content;
+        }
+        .marquee-wrap:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        @keyframes marqueeScroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        </style>
 
         <!-- SECTION 4: ABOUT BRAND STORY 品牌精神故事 -->
         <section id="about" class="scroll-section relative py-24 px-6 md:px-16 flex flex-col justify-center bg-[#FDFBF7] dark:bg-[#111319]">
@@ -491,18 +303,12 @@
                     <div class="relative flex items-center justify-center">
                         <div class="w-72 h-[380px] border border-[#C3B1A0] rounded-3xl relative p-5 flex flex-col justify-between overflow-hidden shadow-xl bg-white dark:bg-[#1C1F26]">
                             <div class="text-[9px] uppercase tracking-widest text-[#C3B1A0] font-semibold flex justify-between">
-                                <span>Est. 2024</span>
+                                <span>Est. 2026</span>
                                 <span>Handcrafted</span>
                             </div>
                             
-                            <div class="my-auto flex flex-col items-center justify-center py-6">
-                                <svg class="w-36 h-36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="40" r="16" stroke="#BAC4CC" stroke-width="1.2" />
-                                    <path d="M50 56 C 38 72, 62 72, 50 92" stroke="#C3B1A0" stroke-width="1.5" />
-                                    <path d="M30 20 L32 24 L36 24 L33 27 L34 31 L30 28 L26 31 L27 27 L24 24 L28 24 Z" fill="#EADCC9" />
-                                    <path d="M74 70 L75 72 L77 72 L75 74 L76 76 L74 74 L72 76 L73 74 L71 72 L73 72 Z" fill="#EADCC9" />
-                                </svg>
-                                <span class="text-xs uppercase tracking-[0.3em] font-serif-brand text-amber-900 dark:text-amber-500 mt-5">HONEYMOON STAGE</span>
+                            <div class="relative flex-1 overflow-hidden">                               
+                             <img src="brand.png" class="w-full h-full object-cover absolute inset-0">                                <span class="text-xs uppercase tracking-[0.3em] font-serif-brand text-amber-900 dark:text-amber-500 mt-5">HONEYMOON STAGE</span>
                             </div>
                             
                             <div class="text-center text-[9px] text-stone-400">
@@ -516,21 +322,69 @@
                     <!-- 右欄：文字排版 -->
                     <div class="space-y-6">
                         <span class="text-xs tracking-[0.3em] text-[#C3B1A0] dark:text-amber-500 uppercase font-medium">Our Story & Essence</span>
-                        <h2 class="text-3xl md:text-4xl font-serif-brand text-[#5A5048] dark:text-white leading-tight">凝結永恆的浪漫時刻</h2>
+                        <h2 class="text-3xl md:text-4xl font-serif-brand text-[#5A5048] dark:text-white leading-tight">熱戀期</h2>
                         <div class="w-12 h-[1px] bg-[#C3B1A0]"></div>
                         <p class="text-xs md:text-sm font-light leading-relaxed text-stone-600 dark:text-stone-300">
-                            <strong>HONEYMOON STAGE</strong> 誕生於對純粹縹緲浪漫的無盡憧憬。我們深信，每一件手作珠寶都是一幕被結晶下來的魔法場景。正如清晨第一道晨光照耀在細緻銀鏈上的微弱折射，我們透過不規則的巴洛克真珠、輕盈柔軟的羽毛質地，以及具備未來感的前衛液態熔岩，娓娓訴說著光芒。
+                            <strong>「熱戀期」</strong> 來自熱戀時想分享日常、互相關心的心情。
+
                         </p>
                         <p class="text-xs md:text-sm font-light leading-relaxed text-stone-600 dark:text-stone-300">
-                            我們將古典夢幻的蝴蝶結絲線與摩登的解構主義完美交織。每一款飾品皆在我們的專屬工作室中傾注手作執念，不僅為您增添日常的精緻，更希望將一片專屬於您的浪漫微光帶進現實生活。
+                            希望每件作品不只是被購買，而是真正融入生活，在平凡的日子裡陪伴著你。就像熱戀一樣，不只是短暫的心動，而是讓人想一直留在身邊的存在。
                         </p>
                         <div class="pt-4">
-                            <a href="#customization" class="text-xs font-semibold tracking-widest text-amber-800 dark:text-amber-500 hover:text-amber-950 dark:hover:text-amber-300 transition-colors uppercase border-b border-amber-800/50 pb-1.5">
+                            <a href="customization.html" class="text-xs font-semibold tracking-widest text-amber-800 dark:text-amber-500 hover:text-amber-950 dark:hover:text-amber-300 transition-colors uppercase border-b border-amber-800/50 pb-1.5">
                                 親自設計您專屬的首飾 <i class="fa-solid fa-arrow-right ml-2"></i>
                             </a>
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+
+        
+        <!-- SECTION: 品牌特色亮點 -->
+        <section class="scroll-section relative flex items-center justify-center bg-[#0A0D12] overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0E1015] via-[#0A0D12] to-[#0E1015]"></div>
+            <div class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-16 py-20">
+                <div class="text-center mb-16">
+                    <span class="text-xs tracking-[0.3em] text-amber-500 uppercase font-medium">Why Choose Us</span>
+                    <h2 class="text-3xl md:text-4xl font-serif-brand mt-2 text-white">我們的承諾</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- 特色 1: 設計師原創 -->
+                    <div class="group text-center p-6 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] hover:border-amber-500/30 transition-all duration-300">
+                        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>
+                        </div>
+                        <h3 class="text-white text-sm font-semibold tracking-wider mb-2">設計師原創</h3>
+                        <p class="text-stone-500 text-[11px] leading-relaxed">從靈感發想到成品誕生<br>每一步都由設計師親手完成</p>
+                    </div>
+                    <!-- 特色 2: 手工製作 -->
+                    <div class="group text-center p-6 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] hover:border-amber-500/30 transition-all duration-300">
+                        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" /></svg>
+                        </div>
+                        <h3 class="text-white text-sm font-semibold tracking-wider mb-2">手工製作</h3>
+                        <p class="text-stone-500 text-[11px] leading-relaxed">保留手作的溫度與細節<br>讓每件作品都獨一無二</p>
+                    </div>
+                    <!-- 特色 3: 陪伴式售後 -->
+                    <div class="group text-center p-6 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] hover:border-amber-500/30 transition-all duration-300">
+                        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                        </div>
+                        <h3 class="text-white text-sm font-semibold tracking-wider mb-2">陪伴式售後</h3>
+                        <p class="text-stone-500 text-[11px] leading-relaxed">有任何配戴或保養問題<br>都歡迎隨時與我們聊聊</p>
+                    </div>
+                    <!-- 特色 4: 日常陪伴 -->
+                    <div class="group text-center p-6 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] hover:border-amber-500/30 transition-all duration-300">
+                        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016A3.001 3.001 0 0021 9.349m-18 0a2.993 2.993 0 012.25-1.098 2.993 2.993 0 012.25 1.098m0 0A3.001 3.001 0 009.75 9.75m0 0a2.993 2.993 0 002.25-1.016m0 0A2.993 2.993 0 0114.25 9.75m0 0a2.993 2.993 0 002.25-1.016M3 3h18l-1.5 6.35" /></svg>
+                        </div>
+                        <h3 class="text-white text-sm font-semibold tracking-wider mb-2">日常陪伴</h3>
+                        <p class="text-stone-500 text-[11px] leading-relaxed">希望飾品不只是裝飾<br>而是陪伴生活的一部分</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -550,33 +404,54 @@
                     <!-- 問答 1 -->
                     <div class="bg-white dark:bg-[#1C1F26] border border-stone-200 dark:border-stone-800/80 rounded-2xl overflow-hidden transition-all duration-300">
                         <button onclick="toggleAccordion('faq1')" class="w-full p-5 text-left font-medium flex justify-between items-center text-stone-800 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-neutral-800/40 transition-colors">
-                            <span class="text-sm md:text-base">如何保養我的 HONEYMOON STAGE 真珠與金屬首飾？</span>
+                            <span class="text-sm md:text-base">如何保養熱戀期飾品？</span>
                             <i id="faq1-icon" class="fa-solid fa-plus text-xs text-stone-400 transition-transform duration-300"></i>
                         </button>
                         <div id="faq1" class="hidden px-5 pb-5 text-xs md:text-sm text-stone-500 dark:text-stone-400 leading-relaxed pt-2 border-t border-stone-100 dark:border-stone-800">
-                            巴洛克真珠為天然有機寶石，保養非常簡單！請儘量避免與酒精、香水、化妝水等強化學物質直接接觸。每次配戴完畢後，可以使用附贈的細緻微纖維布輕輕擦拭拭去油脂，並將其獨立收納於我們隨附的經典絨布袋中，即可長時間保持溫潤的霓虹極光光澤。
+                            熱戀期的飾品多使用鈦鋼、不鏽鋼、合金、珠珠、天然石等材料製作。
+                            為了延長飾品的美麗壽命，建議避免接觸酒精、乳液、海水及溫泉等化學物質。配戴後可用乾布輕輕擦拭表面汗水與油脂，並收納於夾鏈袋或飾品盒中，減少氧化與刮傷的機會。
                         </div>
                     </div>
 
                     <!-- 問答 2 -->
                     <div class="bg-white dark:bg-[#1C1F26] border border-stone-200 dark:border-stone-800/80 rounded-2xl overflow-hidden transition-all duration-300">
                         <button onclick="toggleAccordion('faq2')" class="w-full p-5 text-left font-medium flex justify-between items-center text-stone-800 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-neutral-800/40 transition-colors">
-                            <span class="text-sm md:text-base">出貨時間要多久？運費如何計算？</span>
+                            <span class="text-sm md:text-base">手機掛繩可以清洗嗎？</span>
                             <i id="faq2-icon" class="fa-solid fa-plus text-xs text-stone-400 transition-transform duration-300"></i>
                         </button>
                         <div id="faq2" class="hidden px-5 pb-5 text-xs md:text-sm text-stone-500 dark:text-stone-400 leading-relaxed pt-2 border-t border-stone-100 dark:border-stone-800">
-                            由於我們大多數的手作原創款式與 DIY 客製化項鍊均是由台灣工作室一對一精緻手作，通常在下單確認後需要 3 至 5 個工作天完成製作並出貨。台灣本島超商物流配送約需 2 至 3 日，海外地區約 7 至 14 工作日。全館商品凡購物滿 $80 即享全球免運優惠！
+                            可以！毛線與珠珠款手機掛繩建議使用中性清潔劑輕柔手洗，洗淨後平放陰乾。若使用洗衣機，請務必放入洗衣袋中清洗，避免勾到其他衣物。請勿烘乾或長時間曝曬，以維持掛繩最佳狀態。
                         </div>
                     </div>
 
                     <!-- 問答 3 -->
                     <div class="bg-white dark:bg-[#1C1F26] border border-stone-200 dark:border-stone-800/80 rounded-2xl overflow-hidden transition-all duration-300">
                         <button onclick="toggleAccordion('faq3')" class="w-full p-5 text-left font-medium flex justify-between items-center text-stone-800 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-neutral-800/40 transition-colors">
-                            <span class="text-sm md:text-base">首飾使用的金屬與防過敏材質說明</span>
+                            <span class="text-sm md:text-base">出貨時間需要多久？</span>
                             <i id="faq3-icon" class="fa-solid fa-plus text-xs text-stone-400 transition-transform duration-300"></i>
                         </button>
                         <div id="faq3" class="hidden px-5 pb-5 text-xs md:text-sm text-stone-500 dark:text-stone-400 leading-relaxed pt-2 border-t border-stone-100 dark:border-stone-800">
-                            我們秉持提供不傷害肌膚的純淨金屬。所有手作耳針均採用醫療級 925 國際標準純銀，鏈身則精選黃銅底加厚電鍍香檳金或白金防氧化塗層。除了降低敏感概率外，更具有優異的色澤持久度。若您屬於極度敏感體質，強烈推薦選擇全純銀無電鍍的自然飾品。
+                            現貨商品通常於付款完成後 3～5 個工作天內出貨；預購商品則依商品頁面標示時間製作與出貨。若遇市集活動、連假或特殊檔期，出貨時間可能略有延長，實際進度會公告於 Instagram 限時動態。
+                        </div>
+                    </div>
+                    <!-- 問答 4 -->
+                    <div class="bg-white dark:bg-[#1C1F26] border border-stone-200 dark:border-stone-800/80 rounded-2xl overflow-hidden transition-all duration-300">
+                        <button onclick="toggleAccordion('faq4')" class="w-full p-5 text-left font-medium flex justify-between items-center text-stone-800 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-neutral-800/40 transition-colors">
+                            <span class="text-sm md:text-base">商品斷掉可以維修嗎？</span>
+                            <i id="faq4-icon" class="fa-solid fa-plus text-xs text-stone-400 transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq4" class="hidden px-5 pb-5 text-xs md:text-sm text-stone-500 dark:text-stone-400 leading-relaxed pt-2 border-t border-stone-100 dark:border-stone-800">
+                            可以！若商品因正常使用造成損壞，可私訊熱戀期聯繫維修。維修費用將依損壞情況及材料需求評估報價；若是收到商品時即有瑕疵，請於收到後 7 日內聯繫我們協助處理。
+                        </div>
+                    </div>
+                    <!-- 問答 5 -->
+                    <div class="bg-white dark:bg-[#1C1F26] border border-stone-200 dark:border-stone-800/80 rounded-2xl overflow-hidden transition-all duration-300">
+                        <button onclick="toggleAccordion('faq5')" class="w-full p-5 text-left font-medium flex justify-between items-center text-stone-800 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-neutral-800/40 transition-colors">
+                            <span class="text-sm md:text-base">商品售完後還會補貨嗎？</span>
+                            <i id="faq5-icon" class="fa-solid fa-plus text-xs text-stone-400 transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq5" class="hidden px-5 pb-5 text-xs md:text-sm text-stone-500 dark:text-stone-400 leading-relaxed pt-2 border-t border-stone-100 dark:border-stone-800">
+                            部分商品為少量製作或限定款式，售完後不一定會再次製作。若商品開放預購或確定補貨，會優先於 Instagram 公告，歡迎追蹤熱戀期獲得最新消息。
                         </div>
                     </div>
 
@@ -704,36 +579,10 @@
 
     <!-- 核心 JavaScript 互動程式邏輯 -->
     <script>
-        // 主題色系管理 (暖陽模式/暮光星光模式)
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const html = document.documentElement;
-
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-            themeIcon.className = 'fa-regular fa-sun text-lg md:text-xl';
-            document.getElementById('starfield').classList.remove('hidden');
-        } else {
-            html.classList.remove('dark');
-            themeIcon.className = 'fa-regular fa-moon text-lg md:text-xl';
-            document.getElementById('starfield').classList.add('hidden');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.theme = 'light';
-                themeIcon.className = 'fa-regular fa-moon text-lg md:text-xl';
-                document.getElementById('starfield').classList.add('hidden');
-            } else {
-                html.classList.add('dark');
-                localStorage.theme = 'dark';
-                themeIcon.className = 'fa-regular fa-sun text-lg md:text-xl';
-                document.getElementById('starfield').classList.remove('hidden');
-                generateStars();
-            }
-        });
-
+        // 強制暗色模式
+        document.documentElement.classList.add('dark');
+        const starfieldEl = document.getElementById('starfield');
+        if (starfieldEl) starfieldEl.classList.remove('hidden');
         // 暮光模式：在全幅背景動態渲染閃爍的星空
         function generateStars() {
             const starfield = document.getElementById('starfield');
@@ -1034,32 +883,32 @@
         // 商品詳細頁面彈窗數據庫
         const PRODUCT_DATABASE = {
             pearl_earrings: {
-                title: "Pearl Drip 耳環",
-                price: 48.00,
-                desc: "凝聚了 HONEYMOON STAGE 獨創的動態流動水體美學。每一隻耳環均經過手工挑選具有特殊虹光、天然有機不規則外觀的巴洛克淡水珍珠，在拋光的 925 純銀垂鏈末端盈盈晃動，細膩優雅。",
+                title: "閃閃好日",
+                price: 620,
+                desc: "以輕盈的夢幻藍調勾勒出晴空般的日常美好。設計上大膽採用不對稱美學，巧妙融合了通透的幾何水晶、溫潤的巴洛克珍珠，並以精緻的水藍色細珠手工編織出靈動的蝴蝶結；頸間垂墜的愛心水晶在陽光下熠熠生輝，如同每個值得慶祝的耀眼日子。無論是搭配簡約日常服或優雅洋裝，它都能成為最溫柔的點睛之筆，陪你閃亮過好日。",
                 category: "SIGNATURE EARRINGS",
-                svg: `<svg viewBox="0 0 100 120" fill="none" class="w-full h-full"><circle cx="50" cy="45" r="14" stroke="#C3B1A0" stroke-width="1.2" stroke-dasharray="3 3" /><path d="M50 59V88" stroke="#C3B1A0" stroke-width="1.5" /><circle cx="50" cy="88" r="4.5" fill="#EAE1D4" stroke="#C3B1A0" stroke-width="1" /><circle cx="50" cy="102" r="7" fill="#FFF" stroke="#C3B1A0" stroke-width="1" /><path d="M45 64L55 70" stroke="#C3B1A0" stroke-width="1" /></svg>`
+                svg: `<img src="necklace.jpg" class="w-full h-full object-contain" alt="Pearl Drip 項鍊">`,
             },
             stacked_ring: {
-                title: "層疊星芒對戒",
-                price: 56.00,
-                desc: "設計理念源於倒映在午夜水面上的新月漣漪。這款由兩枚精雕細琢的極細戒圈組成的對戒，可疊加也可以分開配戴，其中一枚戒台鑲嵌了晶瑩透亮的星芒水晶，在微光下無比璀璨。",
+                title: "鈕扣花串珠戒指",
+                price: 200,
+                desc: "以幾顆不同大小、溫潤如瓷的彩色鈕扣（淡藍、粉紅、米白）疊加成花朵造型，中心則以精細的米珠、水晶珠和一顆小珍珠簇擁，模擬出花蕊的靈動。戒指指環部分使用了多彩的編織細珠鏈，確保佩戴的舒適與多變。它既有鈕扣的復古童趣，又兼具串珠的精緻光澤，戴在手上非常亮眼。",
                 category: "ELEGANT RINGS",
-                svg: `<svg viewBox="0 0 100 120" fill="none" class="w-full h-full"><ellipse cx="50" cy="72" rx="20" ry="7.5" stroke="#C3B1A0" stroke-width="2.5" /><ellipse cx="50" cy="58" rx="20" ry="7.5" stroke="#D5C5B5" stroke-width="2" /><circle cx="50" cy="38" r="4" fill="#FFF" stroke="#C3B1A0" stroke-width="1" /></svg>`
+                svg: `<img src="ring.jpg" class="w-full h-full object-contain" alt="Pearl Drip 戒指">`,
             },
             bow_bracelet: {
-                title: "復古精靈手鍊",
-                price: 39.00,
-                desc: "體現輕快法式復古幻想的代表作品。我們將高光防敏純銀精緻編織成精緻蝴蝶結紐帶，並完美連接天然微型珍珠串，彷彿隨性打上的浪漫蝴蝶結繩結隨手腕擺動而釋放優雅。",
+                title: "Bracelet 鏈",
+                price: 320,
+                desc: "以清透的銀白與草綠色調，勾勒出如午後陽光灑落草地般的愜意美好。設計上大膽採用雙層不對稱美學，巧妙融合了通透的幾何切面水晶、溫潤的巴洛克珍珠，並以精緻細巧的銀色米珠串起靈動的波浪線條；腕間錯落的珍珠在綠蔭陽光下熠熠生輝，如同每個值得記錄的日常微光。無論是單獨配戴或多層次疊搭，它都能成為最溫柔的點睛之筆，陪你輕盈過好日。",
                 category: "CLASSIC BRACELET",
-                svg: `<svg viewBox="0 0 100 120" fill="none" class="w-full h-full"><path d="M15 60 C 35 30, 65 30, 85 60" stroke="#C3B1A0" stroke-width="1.5" /><path d="M15 60 C 35 90, 65 90, 85 60" stroke="#C3B1A0" stroke-width="1.5" /><circle cx="50" cy="60" r="3.5" fill="#C3B1A0" /></svg>`
+                svg: `<img src="bracelet.jpg" class="w-full h-full object-contain" alt="Pearl Drip 手鏈">`,
             },
             drip_choker: {
-                title: "羽毛流光鎖骨鏈",
-                price: 75.00,
-                desc: "這款鎖骨項鍊是 HONEYMOON STAGE 當季主打大作。項鍊本身精選天然而柔軟的白色絨羽點綴，中央墜飾則大膽運用具有冷烈質感的解構型液態銀熔岩飾面，展現溫柔卻極富個性的美感學說。",
+                title: "手腕掛繩",
+                price: 290,
+                desc: " 以輕柔的粉櫻、湖藍與鵝黃色調，勾勒出如書頁翻動間的愜意美好。設計上大膽採用軟綿蓬鬆的多材質線材美學，巧妙融合了通透的空氣感紗線、溫潤的手作針織，並以精緻金屬扣環完美銜接日常實用度；腕間錯落的毛線層次在陽光下熠熠生輝，如同每個沉浸在咖啡香中的耀眼日子。無論是搭配手機、鑰匙或隨身小包，它都能成為最溫柔的點睛之筆，陪你輕盈過好日。 ",
                 category: "LIMITED CHOKER",
-                svg: `<svg viewBox="0 0 100 120" fill="none" class="w-full h-full"><path d="M25 35 C 30 72, 70 72, 75 35" stroke="#C3B1A0" stroke-width="2.5" /><path d="M50 62 V82" stroke="#C3B1A0" stroke-width="1.5" /><path d="M47 82 H53 L50 96 Z" fill="#EAE1D4" stroke="#C3B1A0" stroke-width="1" /></svg>`
+                svg: `<img src="wrist_strap.png" class="w-full h-full object-contain" alt="Pearl Drip 掛繩">`,
             }
         };
 

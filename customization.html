@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>客製化工坊 | HONEYMOON STAGE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .font-serif-brand {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.15em;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px rgba(255, 255, 255, 0.3) solid;
+            transition: background 0.5s, border 0.5s;
+        }
+        .dark .glass-panel {
+            background: rgba(13, 15, 20, 0.55);
+            border-bottom: 1px rgba(255, 255, 255, 0.05) solid;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(247, 242, 235, 0.6); }
+        .dark ::-webkit-scrollbar-track { background: rgba(13, 15, 20, 0.8); }
+        ::-webkit-scrollbar-thumb { background: #C3B1A0; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A89584; }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .aurora {
+            filter: blur(80px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+        .btn-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-hover-effect:hover::after {
+            height: 300%;
+        }
+    </style>
+</head>
+<body class="bg-[#FAF7F2] text-[#4A423C] dark:bg-[#0E1015] dark:text-[#E2E8F0] selection:bg-[#EAE1D4] selection:text-[#4A423C]">
+
+    <div id="starfield" class="hidden fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="aurora absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-indigo-500/30"></div>
+        <div class="aurora absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-500/20"></div>
+    </div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 md:px-12 flex justify-between items-center glass-panel shadow-sm">
+        <a href="index.html" class="flex flex-col leading-tight text-[#5A5048] dark:text-white transition-colors duration-300">
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">HONEYMOON</span>
+    <span class="text-base md:text-xl font-serif-brand font-medium tracking-[0.2em]">STAGE</span>
+</a>
+        
+<div class="hidden md:flex space-x-10 items-center text-xs tracking-[0.25em] font-light ml-auto mr-8">
+            <a href="shop.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">SHOP</a>
+            <a href="customization.html" class="hover:text-[#C3B1A0] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C3B1A0] hover:after:w-full after:transition-all">CUSTOMIZATION</a>
+        </div>
+        <div class="flex items-center space-x-4 md:space-x-6 ml-4">
+            <button onclick="toggleCart()" class="relative p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+                <i class="fa-solid fa-bag-shopping text-lg md:text-xl"></i>
+                <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-amber-800 dark:bg-amber-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold scale-90 hidden">0</span>
+            </button>
+        <button onclick="window.location.href='member.html'" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all focus:outline-none">
+                <i class="fa-regular fa-user text-lg md:text-xl"></i>
+            </button>
+            </div>
+    </nav>
+
+
+    <header class="relative pt-32 pb-12 px-6 text-center z-10">
+        <span class="text-xs tracking-[0.3em] text-[#C3B1A0] dark:text-amber-500 uppercase font-medium">Bespoke Jewelry Studio</span>
+        <h1 class="text-4xl md:text-5xl font-serif-brand mt-4 text-[#5A5048] dark:text-white mb-4">手作客製化工坊</h1>
+        <div class="w-16 h-[1px] bg-[#C3B1A0] mx-auto mb-6"></div>
+        <p class="text-sm font-light text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed">
+            在這裡，您是自己的浪漫造夢者。親自挑選適合膚色的鏈條材質，決定是否疊加溫潤的珍珠光澤，並為項鍊賦予一個屬於您當下心境的靈魂墜飾。
+        </p>
+    </header>
+
+    <main class="relative px-6 md:px-16 pb-24 z-10">
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
+                
+                <div class="lg:col-span-6 xl:col-span-7 bg-white dark:bg-[#181B22] rounded-3xl p-8 flex flex-col items-center justify-center border border-[#EBE3D7]/80 dark:border-stone-800/80 shadow-lg relative min-h-[500px]">
+                    <span class="absolute top-6 left-6 text-[10px] tracking-widest uppercase text-stone-400 dark:text-stone-500 font-bold flex items-center">
+                        <i class="fa-solid fa-eye mr-2"></i> 即時渲染預覽
+                    </span>
+                    
+                    <svg id="custom-necklace-svg" class="w-full max-w-[380px] h-auto drop-shadow-2xl transition-transform duration-500 hover:scale-105" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 210 C40 160 60 110 100 110 C140 110 160 160 160 210" stroke="#EAE3D9" stroke-width="4.5" stroke-linecap="round" />
+                        <ellipse cx="100" cy="110" rx="35" ry="12" fill="#EAE3D9" stroke="#DDD4C8" stroke-width="1.5" />
+                        <path d="M65 110 C65 140 135 140 135 110" fill="#ECE5DB" />
+                        
+                        <path id="svg-chain-silver" d="M55 92 C 70 145, 130 145, 145 92" stroke="#BAC4CC" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 3" class="transition-all duration-300" />
+                        <path id="svg-chain-gold" d="M55 92 C 70 145, 130 145, 145 92" stroke="#E5C185" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 3" class="hidden transition-all duration-300" />
+                        <path id="svg-chain-ribbon" d="M55 92 C 70 145, 130 145, 145 92" stroke="#E6DED5" stroke-width="7" stroke-linecap="round" class="hidden opacity-80 transition-all duration-300" />
+                        
+                        <g id="svg-beads-overlay" class="hidden transition-all duration-300">
+                            <circle cx="62" cy="104" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                            <circle cx="72" cy="115" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                            <circle cx="85" cy="123" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                            <circle cx="100" cy="126" r="4.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                            <circle cx="115" cy="123" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                            <circle cx="128" cy="115" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                            <circle cx="138" cy="104" r="3.5" fill="#FFF" stroke="#E2D7CC" stroke-width="0.5" />
+                        </g>
+
+                        <g id="svg-charm-container" transform="translate(100, 126)" class="transition-transform duration-500">
+                            <circle cx="0" cy="4" r="2.5" stroke="#A8A29E" stroke-width="1.5" fill="none" />
+                            
+                            <g id="charm-pearl" class="transition-all duration-300">
+                                <path d="M-5 10 C-5 6 5 6 5 10 C5 16 3 24 0 24 C-3 24 -5 16 -5 10" fill="#F8F6F2" stroke="#C3B1A0" stroke-width="1.5" />
+                                <ellipse cx="-1.5" cy="11" rx="1.2" ry="2" fill="#FFF" opacity="0.8" />
+                            </g>
+                            <g id="charm-moon" class="hidden transition-all duration-300">
+                                <path d="M-6 8 C6 4 10 20 -2 24 C-10 24 -12 12 -6 8 Z" fill="#F59E0B" stroke="#D97706" stroke-width="1.2" />
+                                <circle cx="2" cy="11" r="1.5" fill="#FFF" />
+                            </g>
+                            <g id="charm-drip" class="hidden transition-all duration-300">
+                                <path d="M-4 6 H4 C4 6 5 12 3 14 C1 16 2 24 0 24 C-2 24 -1 16 -3 14 C-5 12 -4 6 -4 6 Z" fill="#BAC4CC" stroke="#71717A" stroke-width="1" />
+                                <path d="M-1 12 V18" stroke="#FFF" stroke-width="0.8" />
+                            </g>
+                            <g id="charm-bow" class="hidden transition-all duration-300">
+                                <path d="M-7 11 C-12 7 -10 3 -7 11 Z" fill="#F2ECE4" stroke="#78716C" stroke-width="1.2" />
+                                <path d="M7 11 C12 7 10 3 7 11 Z" fill="#F2ECE4" stroke="#78716C" stroke-width="1.2" />
+                                <circle cx="0" cy="11" r="2.2" fill="#78716C" />
+                                <path d="M-2 12 L-6 20" stroke="#78716C" stroke-width="1" />
+                                <path d="M2 12 L6 20" stroke="#78716C" stroke-width="1" />
+                            </g>
+                        </g>
+                    </svg>
+
+                    <div class="mt-8 text-center bg-stone-50 dark:bg-stone-900/50 py-4 px-12 rounded-2xl border border-stone-100 dark:border-stone-800">
+                        <span class="text-[10px] text-stone-500 uppercase tracking-widest font-semibold">專屬訂製款估計售價</span>
+                        <div class="text-4xl font-serif-brand text-amber-800 dark:text-amber-500 font-medium mt-1">
+                            $<span id="custom-total-price">40.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 xl:col-span-5 flex flex-col justify-between space-y-8">
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-6 h-6 rounded-full bg-amber-800 dark:bg-amber-600 text-white flex items-center justify-center text-xs font-serif-brand">1</div>
+                                <h3 class="text-sm uppercase tracking-widest text-stone-800 dark:text-stone-200 font-bold">挑選鏈條款式 (Chain Type)</h3>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <button onclick="selectChain('silver', 20)" id="btn-chain-silver" class="custom-option-btn p-4 text-center rounded-2xl border-2 border-amber-800/80 bg-amber-50/50 dark:bg-amber-950/20 transition-all">
+                                    <i class="fa-solid fa-link block text-2xl mb-2 text-slate-400"></i>
+                                    <span class="block text-xs font-semibold tracking-wider">925 純銀</span>
+                                    <span class="block text-[10px] text-stone-400 mt-1">$20.00</span>
+                                </button>
+                                <button onclick="selectChain('gold', 25)" id="btn-chain-gold" class="custom-option-btn p-4 text-center rounded-2xl border border-stone-200 dark:border-stone-800 transition-all">
+                                    <i class="fa-solid fa-link block text-2xl mb-2 text-amber-400"></i>
+                                    <span class="block text-xs font-semibold tracking-wider">香檳金</span>
+                                    <span class="block text-[10px] text-stone-400 mt-1">$25.00</span>
+                                </button>
+                                <button onclick="selectChain('ribbon', 18)" id="btn-chain-ribbon" class="custom-option-btn p-4 text-center rounded-2xl border border-stone-200 dark:border-stone-800 transition-all">
+                                    <i class="fa-solid fa-ribbon block text-2xl mb-2 text-stone-300"></i>
+                                    <span class="block text-xs font-semibold tracking-wider">蕾絲緞帶</span>
+                                    <span class="block text-[10px] text-stone-400 mt-1">$18.00</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-6 h-6 rounded-full bg-amber-800 dark:bg-amber-600 text-white flex items-center justify-center text-xs font-serif-brand">2</div>
+                                <h3 class="text-sm uppercase tracking-widest text-stone-800 dark:text-stone-200 font-bold">細節疊加 (Layering)</h3>
+                            </div>
+                            <label class="flex items-center justify-between p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1C1F26] cursor-pointer hover:shadow-md transition-all">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
+                                        <i class="fa-solid fa-circle-nodes text-stone-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold">穿插天然淡水珍珠排</p>
+                                        <p class="text-[11px] text-stone-400 mt-0.5">在主體鏈身之間加入細緻的珍珠串排點綴</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-xs font-medium text-amber-800 dark:text-amber-500">+$15.00</span>
+                                    <input type="checkbox" id="pearl-overlay-toggle" onchange="togglePearlOverlay(this)" class="w-5 h-5 rounded accent-amber-700 cursor-pointer">
+                                </div>
+                            </label>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-6 h-6 rounded-full bg-amber-800 dark:bg-amber-600 text-white flex items-center justify-center text-xs font-serif-brand">3</div>
+                                <h3 class="text-sm uppercase tracking-widest text-stone-800 dark:text-stone-200 font-bold">搭配主體墜飾 (Main Charm)</h3>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <button onclick="selectCharm('pearl', 20)" id="btn-charm-pearl" class="custom-charm-btn p-4 text-left rounded-2xl border-2 border-amber-800/80 bg-amber-50/50 dark:bg-amber-950/20 transition-all flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-stone-900 shadow-sm flex items-center justify-center text-stone-600 text-lg"><i class="fa-regular fa-circle"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold tracking-wider">巴洛克淡水珠</p>
+                                        <p class="text-[11px] text-stone-400 mt-0.5">+$20.00</p>
+                                    </div>
+                                </button>
+                                <button onclick="selectCharm('moon', 18)" id="btn-charm-moon" class="custom-charm-btn p-4 text-left rounded-2xl border border-stone-200 dark:border-stone-800 transition-all flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-stone-900 shadow-sm flex items-center justify-center text-amber-500 text-lg"><i class="fa-solid fa-moon"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold tracking-wider">浪漫新月星</p>
+                                        <p class="text-[11px] text-stone-400 mt-0.5">+$18.00</p>
+                                    </div>
+                                </button>
+                                <button onclick="selectCharm('drip', 22)" id="btn-charm-drip" class="custom-charm-btn p-4 text-left rounded-2xl border border-stone-200 dark:border-stone-800 transition-all flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-stone-900 shadow-sm flex items-center justify-center text-zinc-400 text-lg"><i class="fa-solid fa-droplet"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold tracking-wider">液態熔岩銀滴</p>
+                                        <p class="text-[11px] text-stone-400 mt-0.5">+$22.00</p>
+                                    </div>
+                                </button>
+                                <button onclick="selectCharm('bow', 15)" id="btn-charm-bow" class="custom-charm-btn p-4 text-left rounded-2xl border border-stone-200 dark:border-stone-800 transition-all flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-stone-900 shadow-sm flex items-center justify-center text-rose-300 text-lg"><i class="fa-solid fa-ribbon"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold tracking-wider">復古精靈蝶結</p>
+                                        <p class="text-[11px] text-stone-400 mt-0.5">+$15.00</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 mt-8 border-t border-stone-200 dark:border-stone-800">
+                        <button onclick="addCustomToCart()" class="w-full py-5 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-95 text-white text-sm tracking-[0.2em] uppercase font-semibold rounded-2xl transition-all shadow-xl flex items-center justify-center space-x-3 btn-hover-effect">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>將專屬訂製款加入購物提袋</span>
+                        </button>
+                        <p class="text-center text-[10px] text-stone-400 mt-4"><i class="fa-solid fa-truck-fast mr-1"></i> 客製化商品製作約需 5-7 個工作日出貨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-stone-300 dark:border-stone-800 text-center text-xs text-stone-400 relative z-10 bg-[#FAF7F2] dark:bg-[#0E1015]">
+        <p class="font-serif-brand tracking-[0.2em] text-stone-600 dark:text-stone-300 mb-2 text-base">HONEYMOON STAGE STUDIO</p>
+        <p>© 2026 HONEYMOON STAGE. Designed with love. All rights reserved.</p>
+    </footer>
+
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-[#111319] shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-stone-100 dark:border-stone-800/80">
+        <div class="p-6 border-b border-stone-100 dark:border-stone-800 flex justify-between items-center">
+            <h3 class="font-serif-brand text-base text-[#5A5048] dark:text-white flex items-center font-bold">
+                <i class="fa-solid fa-bag-shopping mr-3 text-lg"></i>您的購物提袋 (<span id="cart-count">0</span>)
+            </h3>
+            <button onclick="toggleCart()" class="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-full text-stone-500 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <div id="empty-cart-view" class="h-full flex flex-col items-center justify-center text-center text-stone-400 py-12">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-[#C3B1A0] mb-4"></i>
+                <p class="text-sm font-medium">您的購物袋目前是空的</p>
+                <button onclick="toggleCart(); window.location.href='index.html#shop'" class="mt-6 px-8 py-2.5 bg-[#5A5048] dark:bg-amber-600 text-white text-xs tracking-widest uppercase rounded-lg">前往逛逛 Explore</button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-stone-100 dark:border-stone-800 bg-stone-50 dark:bg-[#181B22] space-y-4">
+            <div id="free-shipping-container" class="space-y-1.5 hidden">
+                <div class="flex justify-between text-[11px] font-medium">
+                    <span id="free-shipping-text">還差 $32.00 享免費送貨</span>
+                    <span>免運門檻 $80.00</span>
+                </div>
+                <div class="w-full bg-stone-200 dark:bg-stone-800 h-1.5 rounded-full overflow-hidden">
+                    <div id="free-shipping-progress" class="bg-amber-800 dark:bg-amber-600 h-full w-[40%] transition-all duration-500"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs">
+                <span class="text-stone-500">預估配送運費</span>
+                <span id="shipping-cost" class="font-medium">$10.00</span>
+            </div>
+            <div class="flex justify-between items-center text-base font-semibold border-t border-dashed border-stone-200 dark:border-stone-800 pt-3">
+                <span>合計總金額</span>
+                <span id="cart-total-price" class="text-amber-800 dark:text-amber-500 font-serif-brand text-xl">$0.00</span>
+            </div>
+
+            <button onclick="checkoutMock()" class="w-full py-4 bg-[#5A5048] dark:bg-amber-600 hover:bg-opacity-95 text-white text-xs tracking-[0.2em] uppercase font-bold rounded-xl transition-all shadow-md btn-hover-effect">
+                前往結帳 SECURE CHECKOUT
+            </button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity duration-300"></div>
+
+    <div id="toast-notif" class="fixed bottom-6 left-6 z-50 bg-[#5A5048] dark:bg-amber-600 text-white text-xs tracking-wider px-5 py-4 rounded-2xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-sparkles text-amber-300"></i>
+        <span id="toast-message">商品已順利加入購物車！</span>
+    </div>
+
+    <script>
+        // 強制暗色模式
+        document.documentElement.classList.add('dark');
+        const starfieldEl = document.getElementById('starfield');
+        if (starfieldEl) starfieldEl.classList.remove('hidden');
+
+        function generateStars() {
+            const starfield = document.getElementById('starfield');
+            const auroras = starfield.querySelectorAll('.aurora');
+            starfield.innerHTML = '';
+            auroras.forEach(a => starfield.appendChild(a));
+
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight * 2; 
+            const starDensity = Math.min(60, Math.floor(screenWidth / 25));
+
+            for (let i = 0; i < starDensity; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * screenHeight}px`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                star.style.animationDuration = `${2.5 + Math.random() * 2}s`;
+                starfield.appendChild(star);
+            }
+        }
+        window.addEventListener('resize', () => { if (html.classList.contains('dark')) generateStars(); });
+
+        // --- 客製化工坊邏輯 ---
+        let selectedChainType = 'silver';
+        let chainPrice = 20;
+        let isPearlOverlayActive = false;
+        let selectedCharmType = 'pearl';
+        let charmPrice = 20;
+
+        function updateCustomizer() {
+            document.getElementById('svg-chain-silver').classList.add('hidden');
+            document.getElementById('svg-chain-gold').classList.add('hidden');
+            document.getElementById('svg-chain-ribbon').classList.add('hidden');
+            
+            if (selectedChainType === 'silver') document.getElementById('svg-chain-silver').classList.remove('hidden');
+            else if (selectedChainType === 'gold') document.getElementById('svg-chain-gold').classList.remove('hidden');
+            else if (selectedChainType === 'ribbon') document.getElementById('svg-chain-ribbon').classList.remove('hidden');
+
+            const pearlOverlay = document.getElementById('svg-beads-overlay');
+            if (isPearlOverlayActive) pearlOverlay.classList.remove('hidden');
+            else pearlOverlay.classList.add('hidden');
+
+            document.getElementById('charm-pearl').classList.add('hidden');
+            document.getElementById('charm-moon').classList.add('hidden');
+            document.getElementById('charm-drip').classList.add('hidden');
+            document.getElementById('charm-bow').classList.add('hidden');
+            document.getElementById(`charm-${selectedCharmType}`).classList.remove('hidden');
+
+            let baseTotal = chainPrice + charmPrice;
+            if (isPearlOverlayActive) baseTotal += 15;
+            document.getElementById('custom-total-price').innerText = baseTotal.toFixed(2);
+        }
+
+        function selectChain(type, price) {
+            selectedChainType = type;
+            chainPrice = price;
+            document.querySelectorAll('.custom-option-btn').forEach(btn => {
+                btn.classList.remove('border-amber-800/80', 'bg-amber-50/50', 'dark:bg-amber-950/20', 'border-2');
+                btn.classList.add('border', 'border-stone-200', 'dark:border-stone-800');
+            });
+            const activeBtn = document.getElementById(`btn-chain-${type}`);
+            activeBtn.classList.remove('border', 'border-stone-200', 'dark:border-stone-800');
+            activeBtn.classList.add('border-2', 'border-amber-800/80', 'bg-amber-50/50', 'dark:bg-amber-950/20');
+            updateCustomizer();
+        }
+
+        function togglePearlOverlay(checkbox) {
+            isPearlOverlayActive = checkbox.checked;
+            updateCustomizer();
+        }
+
+        function selectCharm(type, price) {
+            selectedCharmType = type;
+            charmPrice = price;
+            document.querySelectorAll('.custom-charm-btn').forEach(btn => {
+                btn.classList.remove('border-amber-800/80', 'bg-amber-50/50', 'dark:bg-amber-950/20', 'border-2');
+                btn.classList.add('border', 'border-stone-200', 'dark:border-stone-800');
+            });
+            const activeBtn = document.getElementById(`btn-charm-${type}`);
+            activeBtn.classList.remove('border', 'border-stone-200', 'dark:border-stone-800');
+            activeBtn.classList.add('border-2', 'border-amber-800/80', 'bg-amber-50/50', 'dark:bg-amber-950/20');
+            updateCustomizer();
+        }
+
+        // --- 購物車邏輯 ---
+        let cart = [];
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                renderCart();
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function addToCart(title, price, imageId, isCustom = false) {
+            const existingItem = cart.find(item => item.title === title && item.isCustom === isCustom);
+            if (existingItem) existingItem.qty += 1;
+            else cart.push({ title, price, imageId, qty: 1, isCustom });
+            
+            openToast(`成功將 "${title}" 放入提袋中！`);
+            updateCartCounter();
+            renderCart();
+        }
+
+        function addCustomToCart() {
+            const chainChinese = selectedChainType === 'silver' ? '純銀鏈' : (selectedChainType === 'gold' ? '香檳金鏈' : '緞帶鏈');
+            const charmChinese = selectedCharmType === 'pearl' ? '巴洛克珠' : (selectedCharmType === 'moon' ? '新月' : (selectedCharmType === 'drip' ? '液態銀滴' : '蝴蝶結'));
+            const title = `手工客製 | ${chainChinese}疊戴${charmChinese}鎖骨項鍊`;
+            
+            let cost = chainPrice + charmPrice;
+            if (isPearlOverlayActive) cost += 15;
+            addToCart(title, cost, 'diy_necklace', true);
+        }
+
+        function updateCartCounter() {
+            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+            const badge = document.getElementById('cart-badge');
+            document.getElementById('cart-count').innerText = totalQty;
+            
+            if (totalQty > 0) {
+                badge.classList.remove('hidden');
+                badge.innerText = totalQty;
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            updateCartCounter();
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const emptyView = document.getElementById('empty-cart-view');
+            container.querySelectorAll('.cart-item-row').forEach(r => r.remove());
+
+            if (cart.length === 0) {
+                emptyView.classList.remove('hidden');
+                document.getElementById('cart-total-price').innerText = '$0.00';
+                document.getElementById('free-shipping-container').classList.add('hidden');
+                return;
+            }
+
+            emptyView.classList.add('hidden');
+            let itemSubtotal = 0;
+
+            cart.forEach((item, index) => {
+                const sub = item.price * item.qty;
+                itemSubtotal += sub;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item-row flex items-center justify-between border-b border-stone-100 dark:border-stone-800/60 pb-4';
+                row.innerHTML = `
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-stone-100 dark:bg-[#1E212A] flex items-center justify-center text-stone-600">
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-500 text-lg animate-pulse"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-stone-800 dark:text-stone-200 max-w-[170px] truncate">${item.title}</p>
+                            <p class="text-[10px] text-stone-400 mt-1">$${item.price.toFixed(2)}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3.5">
+                        <div class="flex items-center border border-stone-200 dark:border-stone-800 rounded-lg bg-white dark:bg-[#1A1D25]">
+                            <button onclick="changeQty(${index}, -1)" class="px-2 py-0.5 text-xs text-stone-500 hover:bg-stone-50 dark:hover:bg-stone-800">-</button>
+                            <span class="px-2 text-xs font-semibold">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="px-2 py-0.5 text-xs text-stone-500 hover:bg-stone-50 dark:hover:bg-stone-800">+</button>
+                        </div>
+                        <span class="text-xs font-medium text-stone-700 dark:text-stone-300 font-serif-brand">$${sub.toFixed(2)}</span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            const shippingContainer = document.getElementById('free-shipping-container');
+            const shippingCostEl = document.getElementById('shipping-cost');
+            shippingContainer.classList.remove('hidden');
+
+            let finalShipping = 10.00;
+            if (itemSubtotal >= 80) {
+                finalShipping = 0;
+                shippingCostEl.innerText = '免費免運';
+                shippingCostEl.className = 'text-green-600 dark:text-green-400 font-medium';
+                document.getElementById('free-shipping-text').innerText = '🎉 已符合免運資格！';
+                document.getElementById('free-shipping-progress').style.width = '100%';
+            } else {
+                const diff = 80 - itemSubtotal;
+                shippingCostEl.innerText = `$${finalShipping.toFixed(2)}`;
+                shippingCostEl.className = 'font-medium';
+                document.getElementById('free-shipping-text').innerText = `還差 $${diff.toFixed(2)} 享免費送貨`;
+                document.getElementById('free-shipping-progress').style.width = `${(itemSubtotal / 80) * 100}%`;
+            }
+
+            document.getElementById('cart-total-price').innerText = `$${(itemSubtotal + finalShipping).toFixed(2)}`;
+        }
+
+        function openToast(message) {
+            const toast = document.getElementById('toast-notif');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        function checkoutMock() {
+            if (cart.length === 0) return openToast("您的購物提袋空空如也，無法結帳唷！");
+            openToast("🔒 正在連接 SSL 安全付款頁面，請稍候...");
+            setTimeout(() => {
+                cart = [];
+                updateCartCounter();
+                toggleCart();
+                openToast("🎉 付款模擬成功！感謝您的選購，我們將立即安排手作排單！");
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
